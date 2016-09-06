@@ -1,7 +1,9 @@
 /**
  * Copyright &copy; 2012-2014  All rights reserved.
  */
-package crm.common.mybatis.persistence.interceptor;
+package crm.common.mybatis;
+
+import java.util.Properties;
 
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.BoundSql;
@@ -17,10 +19,9 @@ import org.apache.ibatis.session.RowBounds;
 
 import com.riozenc.quicktool.common.util.StringUtil;
 import com.riozenc.quicktool.common.util.reflect.ReflectUtil;
-
-import crm.common.mybatis.page.Page;
-
-import java.util.Properties;
+import com.riozenc.quicktool.mybatis.page.Page;
+import com.riozenc.quicktool.mybatis.persistence.interceptor.BaseInterceptor;
+import com.riozenc.quicktool.mybatis.persistence.interceptor.SQLHelper;
 
 /**
  * 数据库分页插件，只拦截查询语句.
@@ -63,7 +64,7 @@ public class PaginationInterceptor extends BaseInterceptor {
 			String originalSql = boundSql.getSql().trim();
 
 			// 得到总记录数
-			page.setCount(SQLHelper.getCount(originalSql, null, mappedStatement, parameterObject, boundSql, log));
+			page.setCount(SQLHelper.getCount(originalSql, null, mappedStatement, parameterObject, boundSql, logger));
 			// 获取版面总数，与findList方法绑定（后期可通过sql的名称优化）
 			if (mappedStatement.getId().indexOf("TbMtzlDao") > 0) {
 				MappedStatement mttpCountMS = mappedStatement.getConfiguration()
@@ -75,7 +76,7 @@ public class PaginationInterceptor extends BaseInterceptor {
 				// boundSql.getParameterObject());
 				//
 				page.setBmCount(
-						SQLHelper.getCount(newBoundSql.getSql(), null, mttpCountMS, parameterObject, newBoundSql, log));
+						SQLHelper.getCount(newBoundSql.getSql(), null, mttpCountMS, parameterObject, newBoundSql, logger));
 				page.setBmCountFlag(true);
 				// page.setBmCount(SQLHelper.excuteSql(getBmCountSql(),
 				// mappedStatement, log));

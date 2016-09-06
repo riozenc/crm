@@ -14,6 +14,7 @@
 	http://www.springframework.org/schema/aop  
 	http://www.springframework.org/schema/aop/spring-aop.xsd">
 	
+	<tx:annotation-driven transaction-manager="transactionManager" />
 	
 	<!--创建jdbc数据源 -->
 	<bean id="dataSource" class="org.apache.ibatis.datasource.pooled.PooledDataSource">
@@ -33,53 +34,47 @@
 		transaction-manager="transactionManager"/> -->
 
 
-	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"></property>
-	</bean>
-	<tx:annotation-driven transaction-manager="transactionManager" />
+<!-- 	<bean id="transactionManager" -->
+<!-- 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> -->
+<!-- 		<property name="dataSource" ref="dataSource"></property> -->
+<!-- 	</bean> -->
+	
 
 	<!-- spring事务传播机制 - start -->
-	<bean id="txProxyTemplate" abstract="true"
-		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager">
-			<ref bean="transactionManager" />
-		</property>
-		<property name="proxyTargetClass">
-			<value>true</value>
-		</property>
-		<property name="transactionAttributes">
-			<props>
-				<prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
-				<prop key="query*">PROPAGATION_REQUIRED,readOnly</prop>
-				<prop key="find*">PROPAGATION_REQUIRED,readOnly</prop>
-				<prop key="load*">PROPAGATION_REQUIRED,readOnly</prop>
-				<prop key="inquery*">PROPAGATION_REQUIRED,readOnly</prop>
-				<prop key="inquiry*">PROPAGATION_REQUIRED,readOnly</prop>
-				<prop key="validate*">PROPAGATION_REQUIRED,-Exception</prop>
-				<prop key="delete*">PROPAGATION_REQUIRED,-Exception</prop>
-				<prop key="remove*">PROPAGATION_REQUIRED,-Exception</prop>
-				<prop key="save*">PROPAGATION_REQUIRED,-Exception</prop>
-				<prop key="add*">PROPAGATION_REQUIRED,-Exception</prop>
-				<prop key="process*">PROPAGATION_REQUIRED,-Exception</prop>
-				<prop key="insert*">PROPAGATION_REQUIRED,-Exception</prop>
-				<prop key="create*">PROPAGATION_REQUIRED,-Exception</prop>
-				<prop key="update*">PROPAGATION_REQUIRED,-Exception</prop>
-				<prop key="modify*">PROPAGATION_REQUIRED,-Exception</prop>
-				<prop key="persist*">PROPAGATION_REQUIRED,-Exception</prop>
-				<prop key="*">PROPAGATION_REQUIRED,-Exception</prop>
-			</props>
-		</property>
-	</bean>
+<!-- 	<bean id="txProxyTemplate" abstract="true" -->
+<!-- 		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"> -->
+<!-- 		<property name="transactionManager"> -->
+<!-- 			<ref bean="transactionManager" /> -->
+<!-- 		</property> -->
+<!-- 		<property name="proxyTargetClass"> -->
+<!-- 			<value>true</value> -->
+<!-- 		</property> -->
+<!-- 		<property name="transactionAttributes"> -->
+<!-- 			<props> -->
+<!-- 				<prop key="get*">PROPAGATION_REQUIRED,readOnly</prop> -->
+<!-- 				<prop key="query*">PROPAGATION_REQUIRED,readOnly</prop> -->
+<!-- 				<prop key="find*">PROPAGATION_REQUIRED,readOnly</prop> -->
+<!-- 				<prop key="load*">PROPAGATION_REQUIRED,readOnly</prop> -->
+<!-- 				<prop key="inquery*">PROPAGATION_REQUIRED,readOnly</prop> -->
+<!-- 				<prop key="inquiry*">PROPAGATION_REQUIRED,readOnly</prop> -->
+<!-- 				<prop key="validate*">PROPAGATION_REQUIRED,-Exception</prop> -->
+<!-- 				<prop key="delete*">PROPAGATION_REQUIRED,-Exception</prop> -->
+<!-- 				<prop key="remove*">PROPAGATION_REQUIRED,-Exception</prop> -->
+<!-- 				<prop key="save*">PROPAGATION_REQUIRED,-Exception</prop> -->
+<!-- 				<prop key="add*">PROPAGATION_REQUIRED,-Exception</prop> -->
+<!-- 				<prop key="process*">PROPAGATION_REQUIRED,-Exception</prop> -->
+<!-- 				<prop key="insert*">PROPAGATION_REQUIRED,-Exception</prop> -->
+<!-- 				<prop key="create*">PROPAGATION_REQUIRED,-Exception</prop> -->
+<!-- 				<prop key="update*">PROPAGATION_REQUIRED,-Exception</prop> -->
+<!-- 				<prop key="modify*">PROPAGATION_REQUIRED,-Exception</prop> -->
+<!-- 				<prop key="persist*">PROPAGATION_REQUIRED,-Exception</prop> -->
+<!-- 				<prop key="*">PROPAGATION_REQUIRED,-Exception</prop> -->
+<!-- 			</props> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
 
 
-	<!-- 创建SqlSessionFactory，同时指定数据源 -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
-		scope="singleton">
-		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
-	</bean>
-
+	
 
 	<!-- <bean id="abstractDaoSupport" class="cn.aytech.smarthome.dao.AbstractDaoSupport" 
 		abstract="true" lazy-init="false"> <property name="sqlSessionFactory" ref="sqlSessionFactory"></property> 

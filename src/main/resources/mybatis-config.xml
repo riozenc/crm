@@ -12,6 +12,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<setting name="cacheEnabled" value="true" />
 		<setting name="logImpl" value="LOG4J2" />
 		<setting name="jdbcTypeForNull" value="NULL" />
+
+		<!-- 关闭积极加载,也就是设置为按需要加载 -->
+		<!-- <setting name="aggressiveLazyLoading" value="false" /> -->
 	</settings>
 
 	<typeAliases>
@@ -39,7 +42,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias alias="DataLogDomain"
 			type="com.wisdom.gy.interactionMarketing.app.domain.marketing.log.DataLogDomain" />
 		<typeAlias alias="FszzjgDomain"
-		    type="com.wisdom.gy.interactionMarketing.app.domain.marketing.ba.FszzjgDomain"  />
+			type="com.wisdom.gy.interactionMarketing.app.domain.marketing.ba.FszzjgDomain" />
 
 		<!-- 计量 -->
 		<typeAlias alias="SubsDomain"
@@ -77,8 +80,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			type="com.wisdom.gy.interactionMarketing.app.domain.local.s.WorkOrderDomain" />
 		<typeAlias alias="WorkOrderDetailDomain"
 			type="com.wisdom.gy.interactionMarketing.app.domain.local.s.WorkOrderDetailDomain" />
-	    <typeAlias alias="OrgDomain"
-	        type="com.wisdom.gy.interactionMarketing.app.domain.local.o.OrgDomain"  />
+		<typeAlias alias="OrgDomain"
+			type="com.wisdom.gy.interactionMarketing.app.domain.local.o.OrgDomain" />
 
 		<typeAlias alias="PowercutWorkOrderDetailDomain"
 			type="com.wisdom.gy.interactionMarketing.app.domain.local.s.PowercutWorkOrderDetailDomain" />
@@ -197,9 +200,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			resource="com/wisdom/gy/interactionMarketing/app/dao/local/s/WorkOrderDAO.xml" />
 		<mapper
 			resource="com/wisdom/gy/interactionMarketing/app/dao/local/s/WorkOrderDetailDAO.xml" />
-		<mapper  
-		    resource="com/wisdom/gy/interactionMarketing/app/dao/local/o/OrgDAO.xml"  />	
-			
+		<mapper
+			resource="com/wisdom/gy/interactionMarketing/app/dao/local/o/OrgDAO.xml" />
+
 
 		<mapper
 			resource="com/wisdom/gy/interactionMarketing/app/dao/local/s/PowercutWorkOrderDAO.xml" />

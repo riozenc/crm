@@ -70,7 +70,7 @@
 
 
 
-
+	<import resource="applicationContext-mybatis.xml" />
 
 	<!-- 业务 -->
 	<import resource="applicationContext-aop.xml" />

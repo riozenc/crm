@@ -5,9 +5,7 @@
  */
 package crm.webapp.acc.action;
 
-import org.springframework.web.bind.annotation.ControllerAdvice;
 
-@ControllerAdvice
 public class UserAction {
 
 }

@@ -22,7 +22,7 @@
 	<aop:aspectj-autoproxy />
 
 	<!-- 自动扫描的包名 -->
-	<context:component-scan base-package="esi"></context:component-scan>
+	<context:component-scan base-package="crm"></context:component-scan>
 
 	<!-- 默认的注解映射的支持 --><!-- 启动spring内置json转换(注释) -->
 	<mvc:annotation-driven />
@@ -56,7 +56,7 @@
 
 	<!-- 拦截器 -->
 	<mvc:interceptors>
-		<bean class="esi.web.interceptor.BaseInterceptor" />
+		<bean class="crm.web.interceptor.BaseInterceptor" />
 	</mvc:interceptors>
 
 
@@ -70,8 +70,8 @@
 
 
 
-	<import resource="applicationContext-mybatis.xml" />
+<!-- 	<import resource="applicationContext-mybatis.xml" /> -->
 
 	<!-- 业务 -->
-	<import resource="applicationContext-aop.xml" />
+<!-- 	<import resource="applicationContext-aop.xml" /> -->
 </beans>

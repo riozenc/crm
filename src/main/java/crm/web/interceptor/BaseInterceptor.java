@@ -14,16 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.method.HandlerMethod;
-import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.riozenc.quicktool.common.util.date.DateUtil;
 import com.riozenc.quicktool.common.util.log.LogUtil;
 import com.riozenc.quicktool.common.util.log.LogUtil.LOG_TYPE;
 
-
-
-public class BaseInterceptor implements HandlerInterceptor {
+public class BaseInterceptor extends HandlerInterceptorAdapter {
 
 	// 参数中的Object handler是下一个拦截器。
 

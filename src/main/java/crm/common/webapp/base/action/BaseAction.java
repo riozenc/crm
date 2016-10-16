@@ -3,7 +3,7 @@
  * Author:czy
  * Datetime:2016年9月18日 下午5:09:38
  */
-package crm.common.webapp.action;
+package crm.common.webapp.base.action;
 
 import java.beans.PropertyEditorSupport;
 import java.io.IOException;

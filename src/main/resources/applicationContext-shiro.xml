@@ -54,15 +54,18 @@
 
 		<!--缓存管理 -->
 		<property name="sessionManager" ref="sessionManager" />
-		<property name="cacheManager" ref="cacheManager" />
+<!-- 		<property name="cacheManager" ref="cacheManager" /> -->
 	</bean>
 
 	<!--3、realm -->
 	<bean id="passwordShiroRealm" class="crm.common.security.PasswordShiroRealm" />
+	
 	<!-- 缓存管理器 -->
 	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
-		<property name="cacheManager" value="classpath:cache/ehcache.xml" />
+		<property name="cacheManagerConfigFile" value="classpath:ehcache.xml" />
+		<property name="shared" value="true"></property>  
 	</bean>
+	
 	<!--4、会话管理器 -->
 	<bean id="sessionManager"
 		class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">

@@ -69,7 +69,7 @@
 		cache-period="31556926"/> -->
 
 
-
+	<import resource="applicationContext-shiro.xml" />
 <!-- 	<import resource="applicationContext-mybatis.xml" /> -->
 
 	<!-- 业务 -->

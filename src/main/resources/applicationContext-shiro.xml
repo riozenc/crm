@@ -63,7 +63,6 @@
 	<!-- 缓存管理器 -->
 	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
 		<property name="cacheManagerConfigFile" value="classpath:ehcache.xml" />
-		<property name="shared" value="true"></property>  
 	</bean>
 	
 	<!--4、会话管理器 -->

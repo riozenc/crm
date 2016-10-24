@@ -62,7 +62,7 @@
 			<version>1.1.0.Final</version>
 		</dependency>
 
-		
+
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-core</artifactId>
@@ -94,6 +94,12 @@
 			<artifactId>aspectjrt</artifactId>
 			<version>1.8.7</version>
 		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<finalName>crm</finalName>

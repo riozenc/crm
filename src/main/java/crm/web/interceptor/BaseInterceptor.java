@@ -81,12 +81,14 @@ public class BaseInterceptor extends HandlerInterceptorAdapter {
 				.info("[" + DateUtil.formatDateTime(new Date()) + "]{" + httpServletRequest.getRemoteAddr() + "} 执行"
 						+ getClassMethod(object) + "[" + httpServletRequest.getMethod() + "]");
 
-		if (RequestMethod.GET.name().equals(httpServletRequest.getMethod())) {
-			// 只支持GET方法
-			return true;
-		} else {
-			return false;
-		}
+		// if (RequestMethod.GET.name().equals(httpServletRequest.getMethod()))
+		// {
+		// // 只支持GET方法
+		// return true;
+		// } else {
+		// return false;
+		// }
+		return true;
 
 	}
 

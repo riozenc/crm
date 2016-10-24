@@ -17,9 +17,15 @@ import javax.validation.Validator;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.shiro.authz.UnauthenticatedException;
+import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.context.request.NativeWebRequest;
 
 import com.riozenc.quicktool.common.util.date.DateUtil;
 import com.riozenc.quicktool.common.util.json.JSONUtil;
@@ -30,6 +36,54 @@ public class BaseAction {
 	protected Logger logger = LogManager.getLogger(getClass());
 
 	private Validator validator;
+
+	/**
+	 * 应用到所有@RequestMapping注解方法，在其执行之前把返回值放入Model
+	 * 
+	 * @return
+	 */
+	@ModelAttribute
+	public String initModel() {
+		String czy = "czy";
+		return czy;
+	}
+
+	/**
+	 * 初始化数据绑定 1. 将所有传递进来的String进行HTML编码，防止XSS攻击 2. 将字段中Date类型转换为String类型
+	 */
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		System.out.println("============应用到所有@RequestMapping注解方法，在其执行之前初始化数据绑定器");
+
+		// String类型转换，将所有传递进来的String进行HTML编码，防止XSS攻击
+		binder.registerCustomEditor(String.class, new PropertyEditorSupport() {
+			@Override
+			public void setAsText(String text) {
+				setValue(text == null ? null : StringEscapeUtils.escapeHtml4(text.trim()));
+			}
+
+			@Override
+			public String getAsText() {
+				Object value = getValue();
+				return value != null ? value.toString() : "";
+			}
+		});
+		// Date 类型转换
+		binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {
+			@Override
+			public void setAsText(String text) {
+				setValue(DateUtil.parseDate(text));
+			}
+
+		});
+	}
+
+	@ExceptionHandler(UnauthenticatedException.class)
+	@ResponseStatus(HttpStatus.UNAUTHORIZED)
+	public String processUnauthenticatedException(NativeWebRequest request, UnauthenticatedException e) {
+		System.out.println("===========应用到所有@RequestMapping注解的方法，在其抛出UnauthenticatedException异常时执行");
+		return "viewName"; // 返回一个逻辑视图名
+	}
 
 	/**
 	 * 服务端参数有效性验证
@@ -95,31 +149,4 @@ public class BaseAction {
 		}
 	}
 
-	/**
-	 * 初始化数据绑定 1. 将所有传递进来的String进行HTML编码，防止XSS攻击 2. 将字段中Date类型转换为String类型
-	 */
-	@InitBinder
-	protected void initBinder(WebDataBinder binder) {
-		// String类型转换，将所有传递进来的String进行HTML编码，防止XSS攻击
-		binder.registerCustomEditor(String.class, new PropertyEditorSupport() {
-			@Override
-			public void setAsText(String text) {
-				setValue(text == null ? null : StringEscapeUtils.escapeHtml4(text.trim()));
-			}
-
-			@Override
-			public String getAsText() {
-				Object value = getValue();
-				return value != null ? value.toString() : "";
-			}
-		});
-		// Date 类型转换
-		binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {
-			@Override
-			public void setAsText(String text) {
-				setValue(DateUtil.parseDate(text));
-			}
-
-		});
-	}
 }

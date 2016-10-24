@@ -21,9 +21,9 @@
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
 		<!-- 如果没有认证将要跳转的登陆地址，http可访问的url，如果不在表单认证过虑器FormAuthenticationFilter中指定此地址就为身份认证地址 -->
-		<property name="loginUrl" value="/login.action" />
+		<property name="loginUrl" value="/login.do" />
 		<!-- 没有权限跳转的地址 -->
-		<property name="unauthorizedUrl" value="/pages/jsp/refuse.jsp" />
+		<property name="unauthorizedUrl" value="/login.html" />
 		<!--过滤定义，从上而下，蒋匿名的anon放最下面 -->
 		<!-- anon,authc,authcBasic,user是第一组认证过滤器 -->
 		<!-- perms,port,rest,roles,ssl是第二组授权过滤器 -->
@@ -43,7 +43,9 @@
 		<!-- user org.apache.shiro.web.filter.authz.UserFilter表示必须存在用户,当登入操作时不做检查 -->
 		<property name="filterChainDefinitions">
 			<value>
-				/** anon
+				/crm/loginAction/login**=authc
+				/crm/**=user
+				/**=anon
 			</value>
 		</property>
 	</bean>
@@ -54,17 +56,17 @@
 
 		<!--缓存管理 -->
 		<property name="sessionManager" ref="sessionManager" />
-<!-- 		<property name="cacheManager" ref="cacheManager" /> -->
+		<!-- <property name="cacheManager" ref="cacheManager" /> -->
 	</bean>
 
 	<!--3、realm -->
 	<bean id="passwordShiroRealm" class="crm.common.security.PasswordShiroRealm" />
-	
+
 	<!-- 缓存管理器 -->
 	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
 		<property name="cacheManagerConfigFile" value="classpath:ehcache.xml" />
 	</bean>
-	
+
 	<!--4、会话管理器 -->
 	<bean id="sessionManager"
 		class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">

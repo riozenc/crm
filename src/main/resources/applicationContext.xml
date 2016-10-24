@@ -56,7 +56,15 @@
 
 	<!-- 拦截器 -->
 	<mvc:interceptors>
-		<bean class="crm.web.interceptor.BaseInterceptor" />
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="crm.web.interceptor.BaseInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/crm/**" />
+			<mvc:exclude-mapping path="/crm/menuAction/**" />
+			<bean class="crm.web.interceptor.LoginInterceptor" />
+		</mvc:interceptor>
 	</mvc:interceptors>
 
 
@@ -70,8 +78,8 @@
 
 
 	<import resource="applicationContext-shiro.xml" />
-<!-- 	<import resource="applicationContext-mybatis.xml" /> -->
+	<!-- <import resource="applicationContext-mybatis.xml" /> -->
 
 	<!-- 业务 -->
-<!-- 	<import resource="applicationContext-aop.xml" /> -->
+	<!-- <import resource="applicationContext-aop.xml" /> -->
 </beans>

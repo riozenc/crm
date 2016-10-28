@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>用户管理</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="js/jquery-3.0.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="user_main_box">
+	<div class="head_box">
+		 <img src="img/1.jpg">
+	</div>
+	<div class="body_box">
+		<div class="left_box">
+			<div class="panel-group" id="panela">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						 <a class="panel-title" data-toggle="collapse" data-parent="#panela" href="#panel-element1">用户管理</a>
+					</div>
+					<div id="panel-element1" class="panel-collapse in">
+						<div class="panel-body">
+							<a href="#">用户管理1</a>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panela" href="#panel-element2">用户管理2</a>
+					</div>
+					<div id="panel-element2" class="panel-collapse collapse">
+						<div class="panel-body">
+							<a href="#">用户管理3</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<div class="right_box">
+		<div class="refer_condition">
+			<ul id="myTab" class="nav nav-tabs">
+		    <li class="active">
+		        <a href="#data_update" data-toggle="tab">
+		            数据修改
+		        </a>
+		    </li>
+			</ul>
+			<div id="myTabContent" class="tab-content">
+   		 		<div class="tab-pane fade in active" id="data_update">
+               <div class="div-add">
+   					<form role="form">
+                     <div>
+                        <label>姓名：</label>
+                        <input type="text" class="input_add" name="username">
+                     </div>
+                     <div>
+                        <label>用户：</label>
+                        <input type="text" class="input_add" name="yonghu">
+                     </div>
+                     <div>
+                        <label>公司：</label>
+                        <input type="text" class="input_add" name="gongsi">
+                     </div>
+                     <div>
+                        <label>部门：</label>
+                        <input type="text" class="input_add" name="bumen">
+                     </div>
+                     <div>
+                        <label>账号：</label>
+                        <input type="text" class="input_add" name="zhanghao">
+                     </div>
+                     <div>
+                        <button type="button" id="add" class="btn btn-primary" value="修改" onclick="">修改</button>
+                         <button type="button" id="rebtn" class="btn btn-primary" value="返回" onclick="javascript:window.location.href='manage.html'">返回</button>
+                     </div>                
+                  </form>
+                  </div>
+    			</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</div>
+</body>
+</html>

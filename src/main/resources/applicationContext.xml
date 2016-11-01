@@ -87,8 +87,11 @@
 		cache-period="31556926"/> -->
 
 
+
+<!-- 	<import resource="applicationContext-dataSource.xml" /> -->
+<!-- 	<import resource="applicationContext-mybatis.xml" /> -->
 	<import resource="applicationContext-shiro.xml" />
-	<!-- <import resource="applicationContext-mybatis.xml" /> -->
+
 
 	<!-- 业务 -->
 	<!-- <import resource="applicationContext-aop.xml" /> -->

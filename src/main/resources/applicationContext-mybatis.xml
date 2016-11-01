@@ -17,19 +17,33 @@
 
 
 	<!-- 创建SqlSessionFactory，同时指定数据源 -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+	<bean id="master" class="org.mybatis.spring.SqlSessionFactoryBean"
 		scope="singleton">
-		<property name="dataSource" ref="dataSource" />
+		<property name="dataSource" ref="dataSource_master" />
 		<property name="typeAliasesPackage" value="crm" />
 		<property name="mapperLocations" value="classpath:/crm/webapp/**/*.xml" />
 		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
 	</bean>
 
+	<!-- 扫描basePackage下所有以@MyBatisDao注解的接口 -->
+	<bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="sqlSessionFactoryBeanName" value="master" />
+		<property name="basePackage" value="crm" />
+		<property name="annotationClass" value="com.riozenc.quicktool.annotation.MybatisDAO" />
+	</bean>
 
+	<!-- 创建SqlSessionFactory，同时指定数据源 -->
+	<bean id="slave" class="org.mybatis.spring.SqlSessionFactoryBean"
+		scope="singleton">
+		<property name="dataSource" ref="dataSource_slave" />
+		<property name="typeAliasesPackage" value="crm" />
+		<property name="mapperLocations" value="classpath:/crm/webapp/**/*.xml" />
+		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+	</bean>
 
 	<!-- 扫描basePackage下所有以@MyBatisDao注解的接口 -->
 	<bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+		<property name="sqlSessionFactoryBeanName" value="slave" />
 		<property name="basePackage" value="crm" />
 		<property name="annotationClass" value="com.riozenc.quicktool.annotation.MybatisDAO" />
 	</bean>

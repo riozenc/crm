@@ -9,12 +9,17 @@ import javax.servlet.ServletContext;
 
 import org.springframework.web.context.WebApplicationContext;
 
+import com.riozenc.quicktool.springmvc.context.SpringContextHolder;
+
 public class WebContextListener extends org.springframework.web.context.ContextLoaderListener {
 
 	@Override
 	public WebApplicationContext initWebApplicationContext(ServletContext servletContext) {
+		System.out.println("initWebApplicationContext");
 
-		return super.initWebApplicationContext(servletContext);
+		WebApplicationContext webApplicationContext = super.initWebApplicationContext(servletContext);// 额外启动一次
+
+		return webApplicationContext;
 	}
 
 }

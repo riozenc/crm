@@ -88,8 +88,8 @@
 
 
 
-<!-- 	<import resource="applicationContext-dataSource.xml" /> -->
-<!-- 	<import resource="applicationContext-mybatis.xml" /> -->
+	<import resource="applicationContext-dataSource.xml" />
+	<import resource="applicationContext-mybatis.xml" />
 	<import resource="applicationContext-shiro.xml" />
 
 

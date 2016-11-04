@@ -11,9 +11,6 @@ import javax.servlet.ServletContextListener;
 
 import com.riozenc.quicktool.common.util.log.LogUtil;
 import com.riozenc.quicktool.common.util.log.LogUtil.LOG_OUT_TYPE;
-import com.riozenc.quicktool.mybatis.db.DbFactory;
-import com.riozenc.quicktool.springmvc.context.SpringContextHolder;
-import com.riozenc.quicktool.springmvc.context.listener.SpringContextListener;
 
 /**
  * 启动监听器
@@ -31,20 +28,6 @@ public class MainListener implements ServletContextListener {
 		// 日志方式
 		// LogUtil.setLogOutType(LOG_OUT_TYPE.FILE);// 全部日志根据文件配置输出
 		LogUtil.setLogOutType(LOG_OUT_TYPE.SYSTEM);// 全部日志根据文件配置输出
-
-		SpringContextHolder.addListener(new SpringContextListener() {
-
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				try {
-					DbFactory.initDBs();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
 
 		System.out.println("initialized");
 

@@ -16,11 +16,13 @@
 
 
 
+
 	<!-- 创建SqlSessionFactory，同时指定数据源 -->
 	<bean id="master" class="org.mybatis.spring.SqlSessionFactoryBean"
 		scope="singleton">
 		<property name="dataSource" ref="dataSource_master" />
 		<property name="typeAliasesPackage" value="crm" />
+		<property name="typeAliasesSuperType" value="com.riozenc.quicktool.mybatis.MybatisEntity"/>
 		<property name="mapperLocations" value="classpath:/crm/webapp/**/*.xml" />
 		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
 	</bean>
@@ -37,6 +39,7 @@
 		scope="singleton">
 		<property name="dataSource" ref="dataSource_slave" />
 		<property name="typeAliasesPackage" value="crm" />
+		<property name="typeAliasesSuperType" value="com.riozenc.quicktool.mybatis.MybatisEntity"/>
 		<property name="mapperLocations" value="classpath:/crm/webapp/**/*.xml" />
 		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
 	</bean>

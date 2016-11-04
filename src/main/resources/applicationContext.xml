@@ -87,6 +87,11 @@
 		cache-period="31556926"/> -->
 
 
+	<bean id="springContextHolder"
+		class="com.riozenc.quicktool.springmvc.context.SpringContextHolder" />
+	<bean id="dfFactory" class="com.riozenc.quicktool.mybatis.db.DbFactory"
+		init-method="initDBs" />
+
 
 	<import resource="applicationContext-dataSource.xml" />
 	<import resource="applicationContext-mybatis.xml" />

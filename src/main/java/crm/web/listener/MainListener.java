@@ -11,6 +11,7 @@ import javax.servlet.ServletContextListener;
 
 import com.riozenc.quicktool.common.util.log.LogUtil;
 import com.riozenc.quicktool.common.util.log.LogUtil.LOG_OUT_TYPE;
+import com.riozenc.quicktool.mybatis.db.DbFactory;
 
 /**
  * 启动监听器
@@ -29,6 +30,7 @@ public class MainListener implements ServletContextListener {
 		// LogUtil.setLogOutType(LOG_OUT_TYPE.FILE);// 全部日志根据文件配置输出
 		LogUtil.setLogOutType(LOG_OUT_TYPE.SYSTEM);// 全部日志根据文件配置输出
 
+		DbFactory.initByFactory();
 		System.out.println("initialized");
 
 	}

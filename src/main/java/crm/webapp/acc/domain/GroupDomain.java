@@ -3,7 +3,10 @@
  * Author:czy
  * Datetime:2016年9月13日 下午6:35:02
  */
-package crm.webapp.acc.vo;
+package crm.webapp.acc.domain;
+
+import com.riozenc.quicktool.annotation.TablePrimaryKey;
+import com.riozenc.quicktool.mybatis.MybatisEntity;
 
 /**
  * 群组
@@ -11,9 +14,11 @@ package crm.webapp.acc.vo;
  * @author czy
  *
  */
-public class GroupInfoVO {
+public class GroupDomain implements MybatisEntity{
 
+	@TablePrimaryKey
 	private Long id;// ID ID bigint TRUE FALSE TRUE
+	@TablePrimaryKey
 	private String groupNo;// GROUP_NO 群组号 char(15) 15 FALSE FALSE FALSE
 	private String groupName;// GROUP_NAME 群组名称 char(30) 30 FALSE FALSE FALSE
 	private Integer groupType;// GROUP_TYPE 群组类别 int FALSE FALSE FALSE

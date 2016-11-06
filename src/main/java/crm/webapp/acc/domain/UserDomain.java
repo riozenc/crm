@@ -3,7 +3,10 @@
  * Author:czy
  * Datetime:2016年9月13日 下午6:23:33
  */
-package crm.webapp.acc.vo;
+package crm.webapp.acc.domain;
+
+import com.riozenc.quicktool.annotation.TablePrimaryKey;
+import com.riozenc.quicktool.mybatis.MybatisEntity;
 
 /**
  * 用户
@@ -11,9 +14,11 @@ package crm.webapp.acc.vo;
  * @author czy
  *
  */
-public class UserInfoVO {
+public class UserDomain implements MybatisEntity{
 
+	@TablePrimaryKey
 	private String id;// ID 用户号 char(20) 20 TRUE FALSE TRUE
+	@TablePrimaryKey
 	private String userId;// USER_ID 用户自定义ID char(20) 20 TRUE FALSE TRUE
 	private String phone;// PHONE 电话 char(11) 11 FALSE FALSE FALSE
 	private String mailAddress;// MAIL_ADDRESS 邮箱地址 char(20) 20 FALSE FALSE FALSE

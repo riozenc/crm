@@ -7,39 +7,43 @@ package crm.webapp.acc.dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.riozenc.quicktool.mybatis.dao.AbstractDAOSupport;
 import com.riozenc.quicktool.mybatis.dao.BaseDAO;
 
-import crm.webapp.acc.vo.CompanyInfoVO;
+import crm.webapp.acc.domain.CompanyDomain;
 
-public class CompanyDAO extends AbstractDAOSupport implements BaseDAO<CompanyInfoVO> {
+@Service
+public class CompanyDAO extends AbstractDAOSupport implements BaseDAO<CompanyDomain> {
 
 	@Override
-	public int insert(CompanyInfoVO t) {
+	public int insert(CompanyDomain t) {
 		// TODO Auto-generated method stub
-		return getPersistanceManager().insert(this.getClass(), t);
+		System.out.println(getNamespace());
+		return getPersistanceManager("slave").insert(getNamespace() + ".insert", t);
 	}
 
 	@Override
-	public int delete(CompanyInfoVO t) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int update(CompanyInfoVO t) {
+	public int delete(CompanyDomain t) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public CompanyInfoVO findByKey(CompanyInfoVO t) {
+	public int update(CompanyDomain t) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public CompanyDomain findByKey(CompanyDomain t) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<CompanyInfoVO> findByWhere(CompanyInfoVO t) {
+	public List<CompanyDomain> findByWhere(CompanyDomain t) {
 		// TODO Auto-generated method stub
 		return null;
 	}

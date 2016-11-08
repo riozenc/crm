@@ -8,17 +8,16 @@ package crm.webapp.acc.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import com.riozenc.quicktool.mybatis.dao.AbstractDAOSupport;
-import com.riozenc.quicktool.mybatis.dao.BaseDAO;
+import com.riozenc.quicktool.annotation.TransactionService;
+import com.riozenc.quicktool.springmvc.transaction.AbstractServiceSupport;
 
 import crm.webapp.acc.dao.CompanyDAO;
 import crm.webapp.acc.domain.CompanyDomain;
 import crm.webapp.acc.service.CompanyService;
 
-@Service
-public class CompanyServiceImpl implements CompanyService<CompanyDomain> {
+@TransactionService
+public class CompanyServiceImpl extends AbstractServiceSupport implements CompanyService<CompanyDomain> {
 
 	@Autowired
 	private CompanyDAO companyDAO;;

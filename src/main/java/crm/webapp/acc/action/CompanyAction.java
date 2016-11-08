@@ -22,7 +22,7 @@ import crm.webapp.acc.service.CompanyService;
 public class CompanyAction extends BaseAction {
 
 	@Autowired
-	@Qualifier("companyServiceImpl")
+	@Qualifier("CompanyServiceImpl")
 	private CompanyService<CompanyDomain> companyService;
 
 	@ResponseBody

@@ -6,7 +6,8 @@
 package crm.webapp.acc.service;
 
 import crm.common.webapp.base.service.BaseService;
+import crm.webapp.acc.domain.GroupDomain;
 
-public interface GroupService<T> extends BaseService<T> {
+public interface GroupService extends BaseService<GroupDomain> {
 
 }

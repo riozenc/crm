@@ -10,14 +10,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.riozenc.quicktool.annotation.TransactionService;
-import com.riozenc.quicktool.springmvc.transaction.AbstractServiceSupport;
 
 import crm.webapp.acc.dao.CompanyDAO;
 import crm.webapp.acc.domain.CompanyDomain;
 import crm.webapp.acc.service.CompanyService;
 
 @TransactionService
-public class CompanyServiceImpl extends AbstractServiceSupport implements CompanyService<CompanyDomain> {
+public class CompanyServiceImpl implements CompanyService {
 
 	@Autowired
 	private CompanyDAO companyDAO;;

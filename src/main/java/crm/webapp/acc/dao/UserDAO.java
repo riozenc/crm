@@ -8,8 +8,11 @@
 package crm.webapp.acc.dao;
 
 import com.riozenc.quicktool.annotation.MybatisDAO;
+import com.riozenc.quicktool.mybatis.dao.BaseDAO;
+
+import crm.webapp.acc.domain.UserDomain;
 
 @MybatisDAO
-public interface UserDAO {
-	public int insert();
+public interface UserDAO extends BaseDAO<UserDomain> {
+
 }

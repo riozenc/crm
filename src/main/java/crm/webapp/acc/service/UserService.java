@@ -6,7 +6,8 @@
 package crm.webapp.acc.service;
 
 import crm.common.webapp.base.service.BaseService;
+import crm.webapp.acc.domain.UserDomain;
 
-public interface UserService<T> extends BaseService<T> {
+public interface UserService extends BaseService<UserDomain> {
 	
 }

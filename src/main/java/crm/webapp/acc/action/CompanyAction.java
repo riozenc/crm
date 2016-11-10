@@ -21,19 +21,19 @@ import crm.webapp.acc.service.CompanyService;
 @RequestMapping("company")
 public class CompanyAction extends BaseAction {
 
-//	@Autowired
-//	@Qualifier("companyServiceImpl")
-//	private CompanyService companyService;
-//
-//	@ResponseBody
-//	@RequestMapping(params = "type=insert")
-//	public String insert(CompanyDomain companyInfoVO) {
-//		int i = companyService.insert(companyInfoVO);
-//		if (i > 0) {
-//			return JSONUtil.writeSuccessMsg("新增成功.");
-//		} else {
-//			return JSONUtil.writeSuccessMsg("新增失败.");
-//		}
-//	}
+	@Autowired
+	@Qualifier("companyServiceImpl")
+	private CompanyService companyService;
+
+	@ResponseBody
+	@RequestMapping(params = "type=insert")
+	public String insert(CompanyDomain companyInfoVO) {
+		int i = companyService.insert(companyInfoVO);
+		if (i > 0) {
+			return JSONUtil.writeSuccessMsg("新增成功.");
+		} else {
+			return JSONUtil.writeSuccessMsg("新增失败.");
+		}
+	}
 
 }

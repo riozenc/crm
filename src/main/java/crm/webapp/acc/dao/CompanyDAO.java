@@ -7,21 +7,20 @@ package crm.webapp.acc.dao;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import com.riozenc.quicktool.mybatis.dao.AbstractDAOSupport;
 import com.riozenc.quicktool.mybatis.dao.BaseDAO;
 
 import crm.webapp.acc.domain.CompanyDomain;
 
-@Service
+@Repository
 public class CompanyDAO extends AbstractDAOSupport implements BaseDAO<CompanyDomain> {
 
 	@Override
 	public int insert(CompanyDomain t) {
 		// TODO Auto-generated method stub
-		System.out.println(getNamespace());
-		return getPersistanceManager("slave").insert(getNamespace() + ".insert", t);
+		return getPersistanceManager(false).insert(getNamespace() + ".insert", t);
 	}
 
 	@Override

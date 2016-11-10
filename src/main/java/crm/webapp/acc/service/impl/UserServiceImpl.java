@@ -8,17 +8,22 @@ package crm.webapp.acc.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
+import com.riozenc.quicktool.annotation.TransactionService;
+
+import crm.webapp.acc.dao.CompanyDAO;
 import crm.webapp.acc.dao.UserDAO;
+import crm.webapp.acc.domain.CompanyDomain;
 import crm.webapp.acc.domain.UserDomain;
 import crm.webapp.acc.service.UserService;
 
-@Service
+@TransactionService
 public class UserServiceImpl implements UserService {
-	
+
 	@Autowired
 	private UserDAO userDAO;
+	@Autowired
+	private CompanyDAO companyDAO;
 
 	@Override
 	public int insert(UserDomain t) {
@@ -48,6 +53,13 @@ public class UserServiceImpl implements UserService {
 	public List<UserDomain> findByWhere(UserDomain t) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public int insertUserRole(UserDomain userDomain, CompanyDomain companyDomain) {
+		userDAO.insert(userDomain);
+		companyDAO.insert(companyDomain);
+		return 1;
 	}
 
 }

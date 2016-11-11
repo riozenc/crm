@@ -9,12 +9,14 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.riozenc.quicktool.annotation.TransactionDAO;
 import com.riozenc.quicktool.mybatis.dao.AbstractDAOSupport;
 import com.riozenc.quicktool.mybatis.dao.BaseDAO;
 
 import crm.webapp.acc.domain.CompanyDomain;
 
 @Repository
+@TransactionDAO
 public class CompanyDAO extends AbstractDAOSupport implements BaseDAO<CompanyDomain> {
 
 	@Override

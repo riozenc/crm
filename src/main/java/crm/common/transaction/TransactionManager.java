@@ -9,7 +9,7 @@ package crm.common.transaction;
 
 import org.springframework.context.annotation.Configuration;
 
-import com.riozenc.quicktool.springmvc.transaction.TransactionServiceRegistryPostProcessor;
+import com.riozenc.quicktool.springmvc.transaction.registry.TransactionServiceRegistryPostProcessor;
 
 
 @Configuration

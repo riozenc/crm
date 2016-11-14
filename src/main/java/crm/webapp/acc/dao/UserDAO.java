@@ -7,19 +7,15 @@
  */
 package crm.webapp.acc.dao;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.stereotype.Repository;
-
+import com.riozenc.quicktool.annotation.TransactionDAO;
 import com.riozenc.quicktool.mybatis.dao.AbstractDAOSupport;
 import com.riozenc.quicktool.mybatis.dao.BaseDAO;
 
 import crm.webapp.acc.domain.UserDomain;
 
-@Repository
+@TransactionDAO
 public class UserDAO extends AbstractDAOSupport implements BaseDAO<UserDomain> {
 
 	@Override

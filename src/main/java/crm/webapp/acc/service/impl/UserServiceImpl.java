@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.riozenc.quicktool.annotation.TransactionDAO;
 import com.riozenc.quicktool.annotation.TransactionService;
 
 import crm.webapp.acc.dao.CompanyDAO;
@@ -20,9 +21,9 @@ import crm.webapp.acc.service.UserService;
 @TransactionService
 public class UserServiceImpl implements UserService {
 
-	@Autowired
+	@TransactionDAO
 	private UserDAO userDAO;
-	@Autowired
+	@TransactionDAO
 	private CompanyDAO companyDAO;
 
 	@Override

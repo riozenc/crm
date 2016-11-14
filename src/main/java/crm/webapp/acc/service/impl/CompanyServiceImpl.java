@@ -7,8 +7,7 @@ package crm.webapp.acc.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
+import com.riozenc.quicktool.annotation.TransactionDAO;
 import com.riozenc.quicktool.annotation.TransactionService;
 
 import crm.webapp.acc.dao.CompanyDAO;
@@ -18,7 +17,7 @@ import crm.webapp.acc.service.CompanyService;
 @TransactionService
 public class CompanyServiceImpl implements CompanyService {
 
-	@Autowired
+	@TransactionDAO
 	private CompanyDAO companyDAO;;
 
 	@Override

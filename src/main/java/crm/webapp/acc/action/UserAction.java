@@ -43,12 +43,12 @@ public class UserAction extends BaseAction {
 		UserDomain userDomain = new UserDomain();
 		userDomain.setUserId("czy");
 
-//		CompanyDomain companyDomain = new CompanyDomain();
-//		companyDomain.setCompanyNo("2");
-//		companyDomain.setCompanyName("fei");
-//		companyDomain.setCompanyType(2);
-//		userService.insertUserRole(userDomain, companyDomain);
-		userService.insert(userDomain);
+		CompanyDomain companyDomain = new CompanyDomain();
+		companyDomain.setCompanyNo("2");
+		companyDomain.setCompanyName("fei");
+		companyDomain.setCompanyType(2);
+		userService.insertUserRole(userDomain, companyDomain);
+
 
 		return "123";
 	}

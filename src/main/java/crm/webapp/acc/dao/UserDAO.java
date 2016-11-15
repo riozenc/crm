@@ -10,18 +10,18 @@ package crm.webapp.acc.dao;
 import java.util.List;
 
 import com.riozenc.quicktool.annotation.TransactionDAO;
-import com.riozenc.quicktool.mybatis.dao.AbstractDAOSupport;
+import com.riozenc.quicktool.mybatis.dao.AbstractTransactionDAOSupport;
 import com.riozenc.quicktool.mybatis.dao.BaseDAO;
 
 import crm.webapp.acc.domain.UserDomain;
 
 @TransactionDAO
-public class UserDAO extends AbstractDAOSupport implements BaseDAO<UserDomain> {
+public class UserDAO extends AbstractTransactionDAOSupport implements BaseDAO<UserDomain> {
 
 	@Override
 	public int insert(UserDomain t) {
 		// TODO Auto-generated method stub
-		return getPersistanceManager(false).insert(getNamespace() + ".insert", t);
+		return getPersistanceManager().insert(getNamespace() + ".insert", t);
 	}
 
 	@Override

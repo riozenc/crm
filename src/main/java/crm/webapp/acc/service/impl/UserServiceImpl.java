@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
 
 	@TransactionDAO
 	private UserDAO userDAO;
-	@TransactionDAO
+	@TransactionDAO("slave")
 	private CompanyDAO companyDAO;
 
 	@Override
@@ -59,7 +59,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int insertUserRole(UserDomain userDomain, CompanyDomain companyDomain) {
 		userDAO.insert(userDomain);
+		String s = null;
 		companyDAO.insert(companyDomain);
+		s.toString();
 		return 1;
 	}
 

@@ -22,6 +22,7 @@
 		<property name="securityManager" ref="securityManager" />
 		<!-- 如果没有认证将要跳转的登陆地址，http可访问的url，如果不在表单认证过虑器FormAuthenticationFilter中指定此地址就为身份认证地址 -->
 		<property name="loginUrl" value="/loginAction/login.do" />
+		<property name="successUrl" value="/loginAction/login.do" />
 		<!-- 没有权限跳转的地址 -->
 		<property name="unauthorizedUrl" value="/index.jsp" />
 

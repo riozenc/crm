@@ -48,4 +48,7 @@ public class UserDAO extends AbstractTransactionDAOSupport implements BaseDAO<Us
 		return null;
 	}
 
+	public UserDomain getLoginUser(UserDomain t) {
+		return getPersistanceManager().load(getNamespace() + ".getLoginUser", t);
+	}
 }

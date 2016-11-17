@@ -17,4 +17,5 @@ public interface BaseService<T> {
 	public T findByKey(T t);
 
 	public List<T> findByWhere(T t);
+
 }

@@ -32,8 +32,8 @@ public class PasswordShiroFilter extends FormAuthenticationFilter {
 	@Override
 	protected AuthenticationToken createToken(ServletRequest request, ServletResponse response) {
 		// TODO Auto-generated method stub
-		
-		Subject subject =  SecurityUtils.getSubject();
+
+		Subject subject = SecurityUtils.getSubject();
 		System.out.println(subject.getPrincipal());
 
 		String username = getUsername(request);
@@ -47,6 +47,13 @@ public class PasswordShiroFilter extends FormAuthenticationFilter {
 		String captcha = WebUtils.getCleanParam(request, DEFAULT_CAPTCHA_PARAM);
 		boolean mobile = WebUtils.isTrue(request, DEFAULT_MOBILE_PARAM);
 		return new UsernamePasswordToken(username, password.toCharArray(), rememberMe, host, captcha, mobile);
+	}
+
+	@Override
+	protected boolean onLoginSuccess(AuthenticationToken token, Subject subject, ServletRequest request,
+			ServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		return super.onLoginSuccess(token, subject, request, response);
 	}
 
 	@Override

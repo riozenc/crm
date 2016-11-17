@@ -7,8 +7,6 @@ package crm.webapp.acc.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.riozenc.quicktool.annotation.TransactionDAO;
 import com.riozenc.quicktool.annotation.TransactionService;
 
@@ -63,6 +61,12 @@ public class UserServiceImpl implements UserService {
 		companyDAO.insert(companyDomain);
 		s.toString();
 		return 1;
+	}
+
+	@Override
+	public UserDomain getLoginUser(UserDomain userDomain) {
+		// TODO Auto-generated method stub
+		return userDAO.getLoginUser(userDomain);
 	}
 
 }

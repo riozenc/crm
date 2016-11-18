@@ -84,8 +84,8 @@ public class PasswordShiroRealm extends AuthorizingRealm {
 
 		byte[] bytes = new byte[8];
 		new SecureRandom().nextBytes(bytes);
-		String plain = StringEscapeUtils.unescapeHtml4("5566");
 		byte[] salt = bytes;
+		String plain = StringEscapeUtils.unescapeHtml4("5566");
 
 		MessageDigest digest;
 		try {

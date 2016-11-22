@@ -47,9 +47,9 @@
 	</select>
 	<insert id="insert" parameterType="UserDomain" flushCache="true">
 		insert into
-		USER_INFO(ID,USER_ID,PHONE,MAIL_ADDRESS,USER_NAME,SEX,IMAGE_URL,STATUS)
+		USER_INFO(ID,USER_ID,PASSWORD,PHONE,MAIL_ADDRESS,USER_NAME,SEX,IMAGE_URL,STATUS)
 		values
-		(#{id},#{userId},#{phone},#{mailAddress},#{userName},#{sex},#{imageUrl},#{status})
+		(#{id},#{userId},#{password},#{phone},#{mailAddress},#{userName},#{sex},#{imageUrl},#{status})
 	</insert>
 	<update id="update" parameterType="UserDomain" flushCache="true">
 		update USER_INFO

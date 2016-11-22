@@ -25,25 +25,25 @@ public class CompanyDAO extends AbstractTransactionDAOSupport implements BaseDAO
 	@Override
 	public int delete(CompanyDomain t) {
 		// TODO Auto-generated method stub
-		return 0;
+		return getPersistanceManager().delete(getNamespace() + ".insert", t);
 	}
 
 	@Override
 	public int update(CompanyDomain t) {
 		// TODO Auto-generated method stub
-		return 0;
+		return getPersistanceManager().update(getNamespace() + ".insert", t);
 	}
 
 	@Override
 	public CompanyDomain findByKey(CompanyDomain t) {
 		// TODO Auto-generated method stub
-		return null;
+		return getPersistanceManager().load(getNamespace() + ".insert", t);
 	}
 
 	@Override
 	public List<CompanyDomain> findByWhere(CompanyDomain t) {
 		// TODO Auto-generated method stub
-		return null;
+		return getPersistanceManager().find(getNamespace() + ".insert", t);
 	}
 
 }

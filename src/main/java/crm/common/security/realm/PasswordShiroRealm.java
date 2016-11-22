@@ -14,8 +14,10 @@ import java.security.SecureRandom;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -25,9 +27,6 @@ import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.crypto.hash.DefaultHashService;
-import org.apache.shiro.crypto.hash.Hash;
-import org.apache.shiro.crypto.hash.HashRequest;
-import org.apache.shiro.crypto.hash.HashService;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
@@ -51,6 +50,9 @@ public class PasswordShiroRealm extends AuthorizingRealm {
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
 		// TODO Auto-generated method stub
 		System.out.println("doGetAuthorizationInfo");
+		
+//		getAvailablePrincipal(principalCollection);
+		
 		return null;
 	}
 
@@ -59,14 +61,24 @@ public class PasswordShiroRealm extends AuthorizingRealm {
 			throws AuthenticationException {
 		// TODO Auto-generated method stub
 		System.out.println("doGetAuthenticationInfo");
+		
+		SecurityUtils.getSubject();
 
 		UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
 		String username = token.getUsername();
 		if (username != null && !"".equals(username.trim())) {
 			UserDomain userDomain = userService.getLoginUser(new UserDomain(token));
 			if (userDomain != null) {
-				return new SimpleAuthenticationInfo(userDomain.getUserName(), userDomain.getPassword(),
-						ByteSource.Util.bytes("czy"), getName());
+				String password = userDomain.getPassword().substring(16);
+				try {
+					byte[] salt = Hex.decodeHex(userDomain.getPassword().substring(0, 16).toCharArray());
+					return new SimpleAuthenticationInfo(userDomain.getUserName(), password, ByteSource.Util.bytes(salt),
+							getName());
+				} catch (DecoderException e) {
+					// TODO Auto-generated catch block
+					throw new AuthenticationException("密码错误...");
+				}
+
 			}
 		}
 
@@ -75,7 +87,7 @@ public class PasswordShiroRealm extends AuthorizingRealm {
 
 	@PostConstruct
 	public void initCredentialsMatcher() {
-		HashedCredentialsMatcher matcher = new HashedCredentialsMatcher("SHA-1");
+		HashedCredentialsMatcher matcher = new HashedCredentialsMatcher("SHA-512");
 		matcher.setHashIterations(1024);// 迭代1024次
 		setCredentialsMatcher(matcher);
 	}

@@ -7,11 +7,9 @@ package crm.webapp.acc.service.impl;
 
 import java.util.List;
 
-import org.apache.shiro.crypto.hash.SimpleHash;
-
 import com.riozenc.quicktool.annotation.TransactionDAO;
 import com.riozenc.quicktool.annotation.TransactionService;
-import com.riozenc.quicktool.common.util.cryption.en.HashUtils;
+import com.riozenc.quicktool.common.util.cryption.en.WebPasswordUtils;
 
 import crm.webapp.acc.dao.CompanyDAO;
 import crm.webapp.acc.dao.UserDAO;
@@ -30,10 +28,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int insert(UserDomain t) {
 		// TODO Auto-generated method stub
-
-		t.setPassword(new SimpleHash("SHA-1", "5566", "czy", 1024).toBase64());
-
-		return userDAO.insert(t);
+		try {
+			t.setPassword(WebPasswordUtils.encodePassword(t.getPassword()));
+			return userDAO.insert(t);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return e.getClass().hashCode();
+		}
 	}
 
 	@Override
@@ -45,9 +47,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int update(UserDomain t) {
 		// TODO Auto-generated method stub
-		
+
 		if (t.getPassword() != null) {
-//			t.setPassword(HashUtils.getHash(algorithmName, bytes, salt, hashIterations));
+			// t.setPassword(HashUtils.getHash(algorithmName, bytes, salt,
+			// hashIterations));
 		}
 		return 0;
 	}

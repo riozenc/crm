@@ -27,7 +27,8 @@ import crm.common.security.token.UsernamePasswordToken;
 public class PasswordShiroFilter extends FormAuthenticationFilter {
 
 	private static final String DEFAULT_CAPTCHA_PARAM = "validateCode";
-	private static final String DEFAULT_MOBILE_PARAM = "mobileLogin";
+	public static final String DEFAULT_MOBILE_PARAM = "mobileLogin";
+	public static final String DEFAULT_MESSAGE_PARAM = "message";
 
 	@Override
 	protected AuthenticationToken createToken(ServletRequest request, ServletResponse response) {
@@ -71,8 +72,9 @@ public class PasswordShiroFilter extends FormAuthenticationFilter {
 			message = "系统出现点问题，请稍后再试！";
 			e.printStackTrace(); // 输出到控制台
 		}
-		request.setAttribute(getFailureKeyAttribute(), className);
+//		request.setAttribute(getFailureKeyAttribute(), className);
 		request.setAttribute("message", message);
+
 		return super.onLoginFailure(token, e, request, response);
 		// return true;
 	}

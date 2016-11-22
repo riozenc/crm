@@ -30,10 +30,10 @@ public class UserAction extends BaseAction {
 	@RequestMapping(params = "type=insert")
 	public String insert(UserDomain userDomain) {
 		int i = userService.insert(userDomain);
-		if (i > 0) {
+		if (i == 1) {
 			return JSONUtil.writeSuccessMsg("新增成功.");
 		} else {
-			return JSONUtil.writeSuccessMsg("新增失败.");
+			return JSONUtil.writeSuccessMsg("新增失败("+i+").");
 		}
 	}
 
@@ -48,7 +48,6 @@ public class UserAction extends BaseAction {
 		companyDomain.setCompanyName("fei");
 		companyDomain.setCompanyType(2);
 		userService.insertUserRole(userDomain, companyDomain);
-
 
 		return "123";
 	}

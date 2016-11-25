@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.riozenc.quicktool.common.util.date.DateUtil;
+import com.riozenc.quicktool.common.util.log.ExceptionLogUtil;
 import com.riozenc.quicktool.common.util.log.LogUtil;
 import com.riozenc.quicktool.common.util.log.LogUtil.LOG_TYPE;
 
@@ -35,14 +36,17 @@ public class BaseInterceptor extends HandlerInterceptorAdapter {
 
 		if (null != exception) {
 			// 设置头信息,字符集UTF-8
+			
+			
+			
 			httpServletResponse.setHeader("Content-type", "text/html;charset=UTF-8");
-			httpServletResponse.getWriter().println(exception.getMessage());
+			httpServletResponse.getWriter().println(ExceptionLogUtil.log(exception));
 			httpServletResponse.getWriter().close();
 
 			LogUtil.getLogger(LOG_TYPE.ERROR)
 					.error("[" + DateUtil.formatDateTime(new Date()) + "]{" + httpServletRequest.getRemoteAddr()
 							+ "} 执行" + getClassMethod(object) + "[" + httpServletRequest.getMethod() + "]:"
-							+ exception.getMessage());
+							+ ExceptionLogUtil.log(exception));
 		}
 
 	}

@@ -12,6 +12,7 @@ import com.riozenc.quicktool.annotation.TransactionService;
 
 import crm.webapp.acc.dao.CompanyDAO;
 import crm.webapp.acc.domain.CompanyDomain;
+import crm.webapp.acc.domain.UserDomain;
 import crm.webapp.acc.service.CompanyService;
 
 @TransactionService
@@ -48,6 +49,12 @@ public class CompanyServiceImpl implements CompanyService {
 	public List<CompanyDomain> findByWhere(CompanyDomain t) {
 		// TODO Auto-generated method stub
 		return companyDAO.findByWhere(t);
+	}
+
+	@Override
+	public CompanyDomain getCompanyByUser(UserDomain userDomain) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

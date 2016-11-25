@@ -5,13 +5,19 @@
  */
 package crm.webapp.acc.service;
 
+import java.util.List;
+
 import crm.common.webapp.base.service.BaseService;
 import crm.webapp.acc.domain.CompanyDomain;
+import crm.webapp.acc.domain.TbmtzlDomain;
 import crm.webapp.acc.domain.UserDomain;
 
 public interface UserService extends BaseService<UserDomain> {
 
 	public int insertUserRole(UserDomain userDomain, CompanyDomain companyDomain);
 
-	public UserDomain getLoginUser(UserDomain userDomain);
+	public UserDomain getUser(UserDomain userDomain);
+
+	public List<TbmtzlDomain> getTest();
+
 }

@@ -62,12 +62,12 @@ public class PasswordShiroRealm extends AuthorizingRealm {
 		// TODO Auto-generated method stub
 		System.out.println("doGetAuthenticationInfo");
 		
-		SecurityUtils.getSubject();
+//		SecurityUtils.getSubject();
 
 		UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
 		String username = token.getUsername();
 		if (username != null && !"".equals(username.trim())) {
-			UserDomain userDomain = userService.getLoginUser(new UserDomain(token));
+			UserDomain userDomain = userService.getUser(new UserDomain(token));
 			if (userDomain != null) {
 				String password = userDomain.getPassword().substring(16);
 				try {
@@ -78,10 +78,8 @@ public class PasswordShiroRealm extends AuthorizingRealm {
 					// TODO Auto-generated catch block
 					throw new AuthenticationException("密码错误...");
 				}
-
 			}
 		}
-
 		return null;
 	}
 

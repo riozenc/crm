@@ -7,11 +7,14 @@ package crm.webapp.acc.dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.riozenc.quicktool.mybatis.dao.AbstractTransactionDAOSupport;
 import com.riozenc.quicktool.mybatis.dao.BaseDAO;
 
 import crm.webapp.acc.domain.DepartmentDomain;
 
+@Repository
 public class DepartmentDAO extends AbstractTransactionDAOSupport implements BaseDAO<DepartmentDomain> {
 
 	@Override

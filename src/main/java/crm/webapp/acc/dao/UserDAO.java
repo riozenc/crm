@@ -13,7 +13,6 @@ import com.riozenc.quicktool.annotation.TransactionDAO;
 import com.riozenc.quicktool.mybatis.dao.AbstractTransactionDAOSupport;
 import com.riozenc.quicktool.mybatis.dao.BaseDAO;
 
-import crm.webapp.acc.domain.TbmtzlDomain;
 import crm.webapp.acc.domain.UserDomain;
 
 @TransactionDAO
@@ -53,7 +52,4 @@ public class UserDAO extends AbstractTransactionDAOSupport implements BaseDAO<Us
 		return getPersistanceManager().load(getNamespace() + ".getUser", t);
 	}
 
-	public List<TbmtzlDomain> getTest() {
-		return getPersistanceManager().find(getNamespace()+".getTest", null);
-	}
 }

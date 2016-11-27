@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.riozenc.quicktool.common.util.json.JSONUtil;
 
+import crm.common.security.util.UserUtils;
 import crm.common.webapp.base.action.BaseAction;
 import crm.webapp.acc.domain.CompanyDomain;
 import crm.webapp.acc.domain.UserDomain;
@@ -39,9 +40,9 @@ public class CompanyAction extends BaseAction {
 
 	@ResponseBody
 	@RequestMapping(params = "type=getCompany")
-	public String getCompanyByUser(UserDomain userDomain) {
-		CompanyDomain company = companyService.getCompanyByUser(userDomain);
-		return JSONUtil.writeSuccessObject(company);
+	public String getCompanyByUser() {
+		CompanyDomain company = companyService.getCompanyByUser(UserUtils.getPrincipal().getUserDomain());
+		return JSONUtil.getJsonResult(company);
 	}
 
 }

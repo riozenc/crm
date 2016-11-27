@@ -5,8 +5,6 @@
  */
 package crm.webapp.acc.action;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -15,8 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.riozenc.quicktool.common.util.json.JSONUtil;
 
+import crm.common.security.Principal;
+import crm.common.security.util.UserUtils;
 import crm.common.webapp.base.action.BaseAction;
-import crm.webapp.acc.domain.TbmtzlDomain;
 import crm.webapp.acc.domain.UserDomain;
 import crm.webapp.acc.service.UserService;
 
@@ -43,20 +42,17 @@ public class UserAction extends BaseAction {
 	@RequestMapping(params = "type=getUser")
 	public String getUser(UserDomain userDomain) {
 		UserDomain user = userService.getUser(userDomain);
-		return JSONUtil.writeSuccessObject(user);
+		return JSONUtil.getJsonResult(user);
 	}
 
 	@ResponseBody
-	@RequestMapping(params = "type=test")
-	public String test() {
+	@RequestMapping(params = "type=getLoginUser")
+	public String getLoginUser() {
 
-		List<TbmtzlDomain> list = userService.getTest();
+		Principal principal = UserUtils.getPrincipal();
 
-		for (TbmtzlDomain temp : list) {
-			System.out.println(temp.getId() + ":" + temp.getRemark());
-		}
-
-		return "123";
+		// UserDomain user = userService.getUser(userDomain);
+		return JSONUtil.getJsonResult(principal.getUserDomain());
 	}
 
 }

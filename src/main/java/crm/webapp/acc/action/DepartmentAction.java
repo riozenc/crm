@@ -38,6 +38,6 @@ public class DepartmentAction extends BaseAction {
 	@RequestMapping(params = "type=getDepartment")
 	public String getDepartment(DepartmentDomain departmentDomain) {
 		List<DepartmentDomain> list = departmentService.findByWhere(departmentDomain);
-		return JSONUtil.writeSuccessObject(list);
+		return JSONUtil.getJsonResult(list);
 	}
 }

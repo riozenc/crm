@@ -117,10 +117,8 @@
 			</if>
 		</where>
 	</select>
-	
-	<select id="getTest" parameterType="TbmtzlDomain" resultType="TbmtzlDomain">
-		select ID,jing_du,wei_du from tb_mtzl where shi_id = 1420
-	</select>
-	
-	
+
+
+
+
 </mapper>

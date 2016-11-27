@@ -30,6 +30,11 @@ public class UserAction extends BaseAction {
 	@ResponseBody
 	@RequestMapping(params = "type=insert")
 	public String insert(UserDomain userDomain) {
+
+		if (userDomain.getPassword() == null) {
+			return "密码不能为空...";
+		}
+
 		int i = userService.insert(userDomain);
 		if (i == 1) {
 			return JSONUtil.writeSuccessMsg("新增成功.");

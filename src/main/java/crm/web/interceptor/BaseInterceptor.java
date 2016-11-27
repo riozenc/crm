@@ -7,6 +7,7 @@
 package crm.web.interceptor;
 
 import java.lang.reflect.Method;
+import java.nio.charset.Charset;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,9 +37,7 @@ public class BaseInterceptor extends HandlerInterceptorAdapter {
 
 		if (null != exception) {
 			// 设置头信息,字符集UTF-8
-			
-			
-			
+
 			httpServletResponse.setHeader("Content-type", "text/html;charset=UTF-8");
 			httpServletResponse.getWriter().println(ExceptionLogUtil.log(exception));
 			httpServletResponse.getWriter().close();
@@ -53,23 +52,20 @@ public class BaseInterceptor extends HandlerInterceptorAdapter {
 
 	// Action之后,生成视图之前执行
 	// 在postHandle中，有机会修改ModelAndView
-
 	@Override
 	public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
 			Object object, ModelAndView modelAndView) throws Exception {
 		// TODO Auto-generated method stub
-		// if (null != modelAndView) {
-		// // 设置头信息,字符集UTF-8
-		// httpServletResponse.setHeader("Content-type",
-		// "text/html;charset=UTF-8");
-		// httpServletResponse.getWriter().println(modelAndView.getModel().get("json"));
-		//
-		// httpServletResponse.getWriter().close();
-		//
-		// LogUtil.getLogger(LOG_TYPE.OTHER)
-		// .info("[" + httpServletRequest.getRemoteAddr() + "]" +
-		// modelAndView.getModel().get("json"));
-		// }
+		if (null != modelAndView) {
+			// 设置头信息,字符集UTF-8
+			httpServletResponse.setHeader("Content-type", "text/html;charset=UTF-8");
+			httpServletResponse.getWriter().println(modelAndView.getModel().get("json"));
+
+			httpServletResponse.getWriter().close();
+
+			LogUtil.getLogger(LOG_TYPE.OTHER)
+					.info("[" + httpServletRequest.getRemoteAddr() + "]" + modelAndView.getModel().get("json"));
+		}
 		System.out.println("postHandler");
 	}
 
@@ -80,7 +76,7 @@ public class BaseInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
 			Object object) throws Exception {
 		// TODO Auto-generated method stub
-
+		
 		LogUtil.getLogger(LOG_TYPE.OTHER)
 				.info("[" + DateUtil.formatDateTime(new Date()) + "]{" + httpServletRequest.getRemoteAddr() + "} 执行"
 						+ getClassMethod(object) + "[" + httpServletRequest.getMethod() + "]");

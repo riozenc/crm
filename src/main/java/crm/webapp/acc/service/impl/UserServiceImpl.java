@@ -32,14 +32,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int insert(UserDomain t) {
 		// TODO Auto-generated method stub
-		try {
-			t.setPassword(WebPasswordUtils.encodePassword(t.getPassword()));
-			return userDAO.insert(t);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return e.getClass().hashCode();
-		}
+		t.setPassword(WebPasswordUtils.encodePassword(t.getPassword()));
+		return userDAO.insert(t);
 	}
 
 	@Override
@@ -53,8 +47,7 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 
 		if (t.getPassword() != null) {
-			// t.setPassword(HashUtils.getHash(algorithmName, bytes, salt,
-			// hashIterations));
+			t.setPassword(WebPasswordUtils.encodePassword(t.getPassword()));
 		}
 		return 0;
 	}

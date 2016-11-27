@@ -16,7 +16,6 @@ import com.riozenc.quicktool.common.util.json.JSONUtil;
 import crm.common.security.util.UserUtils;
 import crm.common.webapp.base.action.BaseAction;
 import crm.webapp.acc.domain.CompanyDomain;
-import crm.webapp.acc.domain.UserDomain;
 import crm.webapp.acc.service.CompanyService;
 
 @ControllerAdvice
@@ -30,10 +29,13 @@ public class CompanyAction extends BaseAction {
 	@ResponseBody
 	@RequestMapping(params = "type=insert")
 	public String insert(CompanyDomain companyInfoVO) {
-		int i = companyService.insert(companyInfoVO);
-		if (i > 0) {
+
+		try {
+			companyService.insert(companyInfoVO);
 			return JSONUtil.writeSuccessMsg("新增成功.");
-		} else {
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 			return JSONUtil.writeSuccessMsg("新增失败.");
 		}
 	}

@@ -54,7 +54,7 @@ public class CompanyServiceImpl implements CompanyService {
 	@Override
 	public CompanyDomain getCompanyByUser(UserDomain userDomain) {
 		// TODO Auto-generated method stub
-		return null;
+		return companyDAO.getCompanyByUser(userDomain);
 	}
 
 }

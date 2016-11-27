@@ -12,6 +12,7 @@ import com.riozenc.quicktool.mybatis.dao.AbstractTransactionDAOSupport;
 import com.riozenc.quicktool.mybatis.dao.BaseDAO;
 
 import crm.webapp.acc.domain.CompanyDomain;
+import crm.webapp.acc.domain.UserDomain;
 
 @TransactionDAO
 public class CompanyDAO extends AbstractTransactionDAOSupport implements BaseDAO<CompanyDomain> {
@@ -25,25 +26,28 @@ public class CompanyDAO extends AbstractTransactionDAOSupport implements BaseDAO
 	@Override
 	public int delete(CompanyDomain t) {
 		// TODO Auto-generated method stub
-		return getPersistanceManager().delete(getNamespace() + ".insert", t);
+		return getPersistanceManager().delete(getNamespace() + ".delete", t);
 	}
 
 	@Override
 	public int update(CompanyDomain t) {
 		// TODO Auto-generated method stub
-		return getPersistanceManager().update(getNamespace() + ".insert", t);
+		return getPersistanceManager().update(getNamespace() + ".update", t);
 	}
 
 	@Override
 	public CompanyDomain findByKey(CompanyDomain t) {
 		// TODO Auto-generated method stub
-		return getPersistanceManager().load(getNamespace() + ".insert", t);
+		return getPersistanceManager().load(getNamespace() + ".findByKey", t);
 	}
 
 	@Override
 	public List<CompanyDomain> findByWhere(CompanyDomain t) {
 		// TODO Auto-generated method stub
-		return getPersistanceManager().find(getNamespace() + ".insert", t);
+		return getPersistanceManager().find(getNamespace() + ".findByWhere", t);
 	}
 
+	public CompanyDomain getCompanyByUser(UserDomain userDomain) {
+		return getPersistanceManager().load(getNamespace() + ".getCompanyByUser", userDomain);
+	}
 }

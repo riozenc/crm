@@ -80,4 +80,17 @@
 			</if>
 		</where>
 	</delete>
+
+	<select id="getCompanyByUser" parameterType="UserDomain"
+		resultType="CompanyDomain" useCache="true">
+		SELECT
+		a.ID,a.COMPANY_NO,a.COMPANY_NAME,a.COMPANY_TYPE,a.REMARK,a.STATUS
+		FROM
+		COMPANY_INFO a
+		LEFT JOIN user_company_rel b ON b.COMPANY_ID
+		= a.ID
+		<where>
+			b.USER_ID =#{id}
+		</where>
+	</select>
 </mapper>

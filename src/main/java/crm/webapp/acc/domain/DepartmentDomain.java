@@ -5,8 +5,12 @@
  */
 package crm.webapp.acc.domain;
 
-public class DepartmentDomain {
+import com.riozenc.quicktool.annotation.TablePrimaryKey;
+import com.riozenc.quicktool.mybatis.MybatisEntity;
 
+public class DepartmentDomain implements MybatisEntity{
+
+	@TablePrimaryKey
 	private Long id;// ID ID bigint FALSE FALSE FALSE
 	private String name;// 部门名称 NAME varchar(20) 20 FALSE FALSE FALSE
 	private Long parentId;// 上级部门 PARENT_ID bigint FALSE FALSE FALSE

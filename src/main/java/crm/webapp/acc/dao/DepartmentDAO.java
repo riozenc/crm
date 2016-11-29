@@ -9,12 +9,15 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.riozenc.quicktool.annotation.TransactionDAO;
 import com.riozenc.quicktool.mybatis.dao.AbstractTransactionDAOSupport;
 import com.riozenc.quicktool.mybatis.dao.BaseDAO;
 
+import crm.webapp.acc.domain.CompanyDomain;
 import crm.webapp.acc.domain.DepartmentDomain;
 
-@Repository
+//@Repository
+@TransactionDAO
 public class DepartmentDAO extends AbstractTransactionDAOSupport implements BaseDAO<DepartmentDomain> {
 
 	@Override
@@ -47,4 +50,7 @@ public class DepartmentDAO extends AbstractTransactionDAOSupport implements Base
 		return getPersistanceManager().find(getNamespace() + ".findByWhere", t);
 	}
 
+	public List<DepartmentDomain> getDeparmentByCompany(CompanyDomain companyDomain) {
+		return getPersistanceManager().find(getNamespace() + ".getDeparmentByCompany", companyDomain);
+	}
 }

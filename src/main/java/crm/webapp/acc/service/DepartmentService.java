@@ -5,11 +5,13 @@
  */
 package crm.webapp.acc.service;
 
+import java.util.List;
+
 import crm.common.webapp.base.service.BaseService;
+import crm.webapp.acc.domain.CompanyDomain;
 import crm.webapp.acc.domain.DepartmentDomain;
 
 public interface DepartmentService extends BaseService<DepartmentDomain> {
 
-	
-
+	public List<DepartmentDomain> getDeparmentByCompany(CompanyDomain companyDomain);
 }

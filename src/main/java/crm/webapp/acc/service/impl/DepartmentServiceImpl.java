@@ -10,14 +10,19 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.riozenc.quicktool.annotation.TransactionDAO;
+import com.riozenc.quicktool.annotation.TransactionService;
+
 import crm.webapp.acc.dao.DepartmentDAO;
+import crm.webapp.acc.domain.CompanyDomain;
 import crm.webapp.acc.domain.DepartmentDomain;
 import crm.webapp.acc.service.DepartmentService;
 
-@Service
+//@Service
+@TransactionService
 public class DepartmentServiceImpl implements DepartmentService {
 
-	@Autowired
+	@TransactionDAO
 	private DepartmentDAO departmentDAO;
 
 	@Override
@@ -48,6 +53,12 @@ public class DepartmentServiceImpl implements DepartmentService {
 	public List<DepartmentDomain> findByWhere(DepartmentDomain t) {
 		// TODO Auto-generated method stub
 		return departmentDAO.findByWhere(t);
+	}
+
+	@Override
+	public List<DepartmentDomain> getDeparmentByCompany(CompanyDomain companyDomain) {
+		// TODO Auto-generated method stub
+		return departmentDAO.getDeparmentByCompany(companyDomain);
 	}
 
 }

@@ -8,6 +8,7 @@ package crm.webapp.acc.action;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.riozenc.quicktool.common.util.json.JSONUtil;
 
 import crm.common.webapp.base.action.BaseAction;
+import crm.webapp.acc.domain.CompanyDomain;
 import crm.webapp.acc.domain.DepartmentDomain;
 import crm.webapp.acc.service.DepartmentService;
 
@@ -23,6 +25,7 @@ import crm.webapp.acc.service.DepartmentService;
 public class DepartmentAction extends BaseAction {
 
 	@Autowired
+	@Qualifier("departmentServiceImpl")
 	private DepartmentService departmentService;
 
 	@RequestMapping(params = "type=insert")
@@ -38,6 +41,13 @@ public class DepartmentAction extends BaseAction {
 	@RequestMapping(params = "type=getDepartment")
 	public String getDepartment(DepartmentDomain departmentDomain) {
 		List<DepartmentDomain> list = departmentService.findByWhere(departmentDomain);
+		return JSONUtil.getJsonResult(list);
+	}
+
+	@ResponseBody
+	@RequestMapping(params="type=getDeparmentByCompany")
+	public String getDeparmentByCompany(CompanyDomain companyDomain) {
+		List<DepartmentDomain> list = departmentService.getDeparmentByCompany(companyDomain);
 		return JSONUtil.getJsonResult(list);
 	}
 }

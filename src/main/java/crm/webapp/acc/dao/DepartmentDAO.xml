@@ -74,4 +74,14 @@
 			</if>
 		</where>
 	</delete>
+
+
+	<select id="getDeparmentByCompany" parameterType="CompanyDomain"
+		resultType="DepartmentDomain" useCache="true">
+		SELECT b.* FROM company_department_rel a LEFT JOIN department_info b
+		on b.ID = a.DEPARTMENT_ID
+		<where>
+			a.COMPANY_ID=#{id}
+		</where>
+	</select>
 </mapper>

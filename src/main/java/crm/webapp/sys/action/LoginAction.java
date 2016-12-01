@@ -13,16 +13,16 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.apache.shiro.subject.Subject;
-import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.apache.shiro.web.util.WebUtils;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.common.collect.Maps;
 import com.riozenc.quicktool.common.util.StringUtils;
+import com.riozenc.quicktool.common.util.json.JSONUtil;
 
+import crm.common.security.Principal;
 import crm.common.security.filter.PasswordShiroFilter;
 import crm.common.webapp.base.action.BaseAction;
 
@@ -36,6 +36,7 @@ import crm.common.webapp.base.action.BaseAction;
 @RequestMapping("loginAction")
 public class LoginAction extends BaseAction {
 
+	@ResponseBody
 	@RequestMapping(value = "/login")
 	public String login(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
 
@@ -44,28 +45,24 @@ public class LoginAction extends BaseAction {
 		if (errorClassName == null) {
 			// 成功
 			Subject subject = SecurityUtils.getSubject();
+			Principal principal = (Principal) subject.getPrincipal();
+
+			return JSONUtil.writeSuccessMsg("登录成功,欢迎" + principal.getUserName() + "!");
 		} else {
 			// 失败
-			loginFail(httpServletRequest, httpServletResponse);
-		}
-		System.out.println(errorClassName);
-		// DisabledAccountException （禁用的帐号）
-		// LockedAccountException （锁定的帐号）
-		// UnknownAccountException（错误的帐号）
-		// ExcessiveAttemptsException（登录失败次数过多）
-		// IncorrectCredentialsException （错误的凭证）
-		// ExpiredCredentialsException （过期的凭证）
+			System.out.println(errorClassName);
 
-		return null;
+			return loginFail(errorClassName, httpServletRequest, httpServletResponse);
+		}
 	}
 
-	public String loginFail(HttpServletRequest request, HttpServletResponse response) {
-		// Principal principal = UserUtils.getPrincipal();
-		//
-		// // 如果已经登录，则跳转到管理首页
-		// if (principal != null) {
-		// return "redirect:" + adminPath;
-		// }
+	// DisabledAccountException （禁用的帐号）
+	// LockedAccountException （锁定的帐号）
+	// UnknownAccountException（错误的帐号）
+	// ExcessiveAttemptsException（登录失败次数过多）
+	// IncorrectCredentialsException （错误的凭证）
+	// ExpiredCredentialsException （过期的凭证）
+	public String loginFail(String errorClassName, HttpServletRequest request, HttpServletResponse response) {
 
 		String username = WebUtils.getCleanParam(request, PasswordShiroFilter.DEFAULT_USERNAME_PARAM);
 		boolean rememberMe = WebUtils.isTrue(request, PasswordShiroFilter.DEFAULT_REMEMBER_ME_PARAM);
@@ -92,14 +89,13 @@ public class LoginAction extends BaseAction {
 		// return renderString(response, model);
 		// }
 
-		return "false:登录失败";
+		return JSONUtil.writeErrorMsg(message);
 	}
 
 	@RequestMapping(value = "/logout")
 	public String logout(String username, String password) {
-
-		System.out.println(username);
-		System.out.println(password);
+		Subject subject = SecurityUtils.getSubject();
+		SecurityUtils.getSecurityManager().logout(subject);
 
 		return null;
 	}

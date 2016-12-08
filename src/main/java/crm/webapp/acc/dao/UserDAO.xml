@@ -101,7 +101,8 @@
 	</delete>
 
 
-	<select id="getUser" parameterType="UserDomain" resultType="UserDomain">
+	<select id="getUser" parameterType="UserDomain" resultType="UserDomain"
+		useCache="false" flushCache="true">
 		select
 		ID,USER_ID,PASSWORD,PHONE,MAIL_ADDRESS,USER_NAME,SEX,IMAGE_URL,STATUS
 		from USER_INFO
@@ -118,7 +119,13 @@
 		</where>
 	</select>
 
-
-
+	<select id="getUserByCompany" parameterType="CompanyDomain"
+		resultType="UserDomain">
+		SELECT b.* FROM user_company_rel a LEFT JOIN user_info b ON a.USER_ID
+		= b.ID
+		<where>
+			a.COMPANY_ID = #{id}
+		</where>
+	</select>
 
 </mapper>

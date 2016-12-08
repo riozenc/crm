@@ -37,7 +37,7 @@ import crm.common.webapp.base.action.BaseAction;
 public class LoginAction extends BaseAction {
 
 	@ResponseBody
-	@RequestMapping(value = "/login")
+	 @RequestMapping(value = "/login")
 	public String login(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
 
 		String errorClassName = (String) httpServletRequest
@@ -47,6 +47,10 @@ public class LoginAction extends BaseAction {
 			Subject subject = SecurityUtils.getSubject();
 			Principal principal = (Principal) subject.getPrincipal();
 
+			if (principal == null) {
+				// 非法请求
+				return loginFail("IncorrectCredentialsException", httpServletRequest, httpServletResponse);
+			}
 			return JSONUtil.writeSuccessMsg("登录成功,欢迎" + principal.getUserName() + "!");
 		} else {
 			// 失败
@@ -92,7 +96,7 @@ public class LoginAction extends BaseAction {
 		return JSONUtil.writeErrorMsg(message);
 	}
 
-	@RequestMapping(value = "/logout")
+	 @RequestMapping(value = "/logout")
 	public String logout(String username, String password) {
 		Subject subject = SecurityUtils.getSubject();
 		SecurityUtils.getSecurityManager().logout(subject);

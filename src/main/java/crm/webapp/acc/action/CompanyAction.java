@@ -44,7 +44,12 @@ public class CompanyAction extends BaseAction {
 	@RequestMapping(params = "type=getCompany")
 	public String getCompanyByUser() {
 		CompanyDomain company = companyService.getCompanyByUser(UserUtils.getPrincipal().getUserDomain());
+		
+		
+		
 		return JSONUtil.getJsonResult(company);
 	}
+	
+	
 
 }

@@ -5,10 +5,12 @@
  */
 package crm.webapp.acc.domain;
 
+import java.util.List;
+
 import com.riozenc.quicktool.annotation.TablePrimaryKey;
 import com.riozenc.quicktool.mybatis.MybatisEntity;
 
-public class DepartmentDomain implements MybatisEntity{
+public class DepartmentDomain implements MybatisEntity {
 
 	@TablePrimaryKey
 	private Long id;// ID ID bigint FALSE FALSE FALSE
@@ -17,6 +19,8 @@ public class DepartmentDomain implements MybatisEntity{
 	private String function;// 部门职能 FUNCTION varchar(20) 20 FALSE FALSE FALSE
 	private String remark;// 备注 REMARK varchar(100) 100 FALSE FALSE FALSE
 	private Integer status;// 状态 STATUS int FALSE FALSE FALSE
+
+	private List<UserDomain> userList;
 
 	public Long getId() {
 		return id;
@@ -64,6 +68,14 @@ public class DepartmentDomain implements MybatisEntity{
 
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+
+	public List<UserDomain> getUserList() {
+		return userList;
+	}
+
+	public void setUserList(List<UserDomain> userList) {
+		this.userList = userList;
 	}
 
 }

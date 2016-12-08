@@ -16,6 +16,7 @@ import com.riozenc.quicktool.common.util.json.JSONUtil;
 import crm.common.security.Principal;
 import crm.common.security.util.UserUtils;
 import crm.common.webapp.base.action.BaseAction;
+import crm.webapp.acc.domain.CompanyDomain;
 import crm.webapp.acc.domain.UserDomain;
 import crm.webapp.acc.service.UserService;
 
@@ -44,9 +45,9 @@ public class UserAction extends BaseAction {
 	}
 
 	@ResponseBody
-	@RequestMapping(params = "type=getUser")
-	public String getUser(UserDomain userDomain) {
-		UserDomain user = userService.getUser(userDomain);
+	@RequestMapping(params = "type=getUserById")
+	public String getUserById(UserDomain userDomain) {
+		UserDomain user = userService.findByKey(userDomain);
 		return JSONUtil.getJsonResult(user);
 	}
 
@@ -59,5 +60,6 @@ public class UserAction extends BaseAction {
 		// UserDomain user = userService.getUser(userDomain);
 		return JSONUtil.getJsonResult(principal.getUserDomain());
 	}
+
 
 }

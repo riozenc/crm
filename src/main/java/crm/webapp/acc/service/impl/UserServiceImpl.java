@@ -55,13 +55,13 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDomain findByKey(UserDomain t) {
 		// TODO Auto-generated method stub
-		return null;
+		return userDAO.findByKey(t);
 	}
 
 	@Override
 	public List<UserDomain> findByWhere(UserDomain t) {
 		// TODO Auto-generated method stub
-		return null;
+		return userDAO.findByWhere(t);
 	}
 
 	@Override
@@ -77,6 +77,12 @@ public class UserServiceImpl implements UserService {
 	public UserDomain getUser(UserDomain userDomain) {
 		// TODO Auto-generated method stub
 		return userDAO.getUser(userDomain);
+	}
+
+	@Override
+	public List<UserDomain> getUserByCompany(CompanyDomain companyDomain) {
+		// TODO Auto-generated method stub
+		return userDAO.getUserByCompany(companyDomain);
 	}
 
 }

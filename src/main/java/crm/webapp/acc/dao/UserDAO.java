@@ -13,6 +13,7 @@ import com.riozenc.quicktool.annotation.TransactionDAO;
 import com.riozenc.quicktool.mybatis.dao.AbstractTransactionDAOSupport;
 import com.riozenc.quicktool.mybatis.dao.BaseDAO;
 
+import crm.webapp.acc.domain.CompanyDomain;
 import crm.webapp.acc.domain.UserDomain;
 
 @TransactionDAO
@@ -39,17 +40,21 @@ public class UserDAO extends AbstractTransactionDAOSupport implements BaseDAO<Us
 	@Override
 	public UserDomain findByKey(UserDomain t) {
 		// TODO Auto-generated method stub
-		return null;
+		return getPersistanceManager().load(getNamespace() + ".findByKey", t);
 	}
 
 	@Override
 	public List<UserDomain> findByWhere(UserDomain t) {
 		// TODO Auto-generated method stub
-		return null;
+		return getPersistanceManager().find(getNamespace() + ".findByWhere", t);
 	}
 
 	public UserDomain getUser(UserDomain t) {
 		return getPersistanceManager().load(getNamespace() + ".getUser", t);
+	}
+
+	public List<UserDomain> getUserByCompany(CompanyDomain companyDomain) {
+		return getPersistanceManager().find(getNamespace()+".getUserByCompany", companyDomain);
 	}
 
 }

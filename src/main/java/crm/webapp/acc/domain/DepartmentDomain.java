@@ -5,6 +5,7 @@
  */
 package crm.webapp.acc.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.riozenc.quicktool.annotation.TablePrimaryKey;
@@ -20,7 +21,7 @@ public class DepartmentDomain implements MybatisEntity {
 	private String remark;// 备注 REMARK varchar(100) 100 FALSE FALSE FALSE
 	private Integer status;// 状态 STATUS int FALSE FALSE FALSE
 
-	private List<UserDomain> userList;
+	private List<UserDomain> userList=new ArrayList<UserDomain>();
 
 	public Long getId() {
 		return id;

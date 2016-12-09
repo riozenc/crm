@@ -5,17 +5,17 @@
  */
 package crm.webapp.acc.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.riozenc.quicktool.annotation.TransactionDAO;
 import com.riozenc.quicktool.annotation.TransactionService;
 
 import crm.webapp.acc.dao.DepartmentDAO;
+import crm.webapp.acc.dao.UserDAO;
 import crm.webapp.acc.domain.CompanyDomain;
 import crm.webapp.acc.domain.DepartmentDomain;
+import crm.webapp.acc.domain.UserDomain;
 import crm.webapp.acc.service.DepartmentService;
 
 //@Service
@@ -24,6 +24,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 	@TransactionDAO
 	private DepartmentDAO departmentDAO;
+
+	@TransactionDAO
+	private UserDAO userDAO;
 
 	@Override
 	public int insert(DepartmentDomain t) {
@@ -58,7 +61,20 @@ public class DepartmentServiceImpl implements DepartmentService {
 	@Override
 	public List<DepartmentDomain> getDeparmentByCompany(CompanyDomain companyDomain) {
 		// TODO Auto-generated method stub
-		return departmentDAO.getDeparmentByCompany(companyDomain);
+		List<DepartmentDomain> departmentDomains = departmentDAO.getDeparmentByCompany(companyDomain);
+		List<UserDomain> userDomains = userDAO.getUserByCompany(companyDomain);
+		HashMap<Long, DepartmentDomain> map = new HashMap<Long, DepartmentDomain>();
+		for (DepartmentDomain temp : departmentDomains) {
+			map.put(temp.getId(), temp);
+		}
+
+		for (UserDomain temp : userDomains) {
+			if(map.get(temp.getDepartmentId())!=null){
+				map.get(temp.getDepartmentId()).getUserList().add(temp);
+			}
+		}
+
+		return departmentDomains;
 	}
 
 }

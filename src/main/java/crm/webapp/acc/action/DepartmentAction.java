@@ -30,9 +30,6 @@ public class DepartmentAction extends BaseAction {
 	@Qualifier("departmentServiceImpl")
 	private DepartmentService departmentService;
 
-	@Autowired
-	@Qualifier("userServiceImpl")
-	private UserService userService;
 
 	@RequestMapping(params = "type=insert")
 	public String insert(DepartmentDomain departmentDomain) {
@@ -55,7 +52,7 @@ public class DepartmentAction extends BaseAction {
 	public String getDeparmentByCompany(CompanyDomain companyDomain) {
 		List<DepartmentDomain> list = departmentService.getDeparmentByCompany(companyDomain);
 
-		List<UserDomain> userList = userService.getUserByCompany(companyDomain);
+		
 
 		return JSONUtil.getJsonResult(list);
 	}

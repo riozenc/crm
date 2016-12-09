@@ -121,8 +121,9 @@
 
 	<select id="getUserByCompany" parameterType="CompanyDomain"
 		resultType="UserDomain">
-		SELECT b.* FROM user_company_rel a LEFT JOIN user_info b ON a.USER_ID
-		= b.ID
+		SELECT b.ID,b.USER_ID,b.PHONE,b.MAIL_ADDRESS,b.USER_NAME,b.SEX,b.IMAGE_URL,b.STATUS,c.DEPARTMENT_ID FROM user_company_rel a LEFT JOIN user_info
+		b ON a.USER_ID = b.ID LEFT JOIN user_department_rel c ON a.USER_ID =
+		c.USER_ID
 		<where>
 			a.COMPANY_ID = #{id}
 		</where>

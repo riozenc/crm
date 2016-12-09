@@ -31,6 +31,8 @@ public class UserDomain implements MybatisEntity {
 	private String imageUrl;// IMAGE_URL 头像 varchar(20) 20 FALSE FALSE FALSE
 	private Integer status;// STATUS 状态 int FALSE FALSE FALSE
 
+	private Long departmentId;
+
 	public UserDomain() {
 	}
 
@@ -109,6 +111,14 @@ public class UserDomain implements MybatisEntity {
 
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+
+	public Long getDepartmentId() {
+		return departmentId;
+	}
+
+	public void setDepartmentId(Long departmentId) {
+		this.departmentId = departmentId;
 	}
 
 }

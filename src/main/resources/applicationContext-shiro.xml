@@ -52,8 +52,7 @@
 		<property name="filterChainDefinitions">
 			<value>
 				/loginAction/login**=authc
-				/**=user
-				/**=anon
+				/** = user
 			</value>
 		</property>
 	</bean>

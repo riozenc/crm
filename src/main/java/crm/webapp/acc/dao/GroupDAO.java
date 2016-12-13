@@ -11,6 +11,7 @@ import com.riozenc.quicktool.annotation.TransactionDAO;
 import com.riozenc.quicktool.mybatis.dao.AbstractTransactionDAOSupport;
 import com.riozenc.quicktool.mybatis.dao.BaseDAO;
 import crm.webapp.acc.domain.GroupDomain;
+import crm.webapp.acc.domain.UserDomain;
 
 @TransactionDAO
 public class GroupDAO extends AbstractTransactionDAOSupport implements BaseDAO<GroupDomain> {
@@ -43,6 +44,10 @@ public class GroupDAO extends AbstractTransactionDAOSupport implements BaseDAO<G
 	public List<GroupDomain> findByWhere(GroupDomain t) {
 		// TODO Auto-generated method stub
 		return getPersistanceManager().find(getNamespace() + ".findByWhere", t);
+	}
+
+	public List<GroupDomain> findGroupByUser(UserDomain userDomain) {
+		return getPersistanceManager().find(getNamespace() + ".findGroupByUser", userDomain);
 	}
 
 }

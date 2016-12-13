@@ -80,9 +80,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<UserDomain> getUserByCompany(CompanyDomain companyDomain) {
+	public List<UserDomain> findUserByCompany(CompanyDomain companyDomain) {
 		// TODO Auto-generated method stub
-		return userDAO.getUserByCompany(companyDomain);
+		return userDAO.findUserByCompany(companyDomain);
 	}
 
 }

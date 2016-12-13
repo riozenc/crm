@@ -6,6 +6,7 @@
 package crm.webapp.acc.service.impl;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.riozenc.quicktool.annotation.TransactionDAO;
@@ -59,17 +60,18 @@ public class DepartmentServiceImpl implements DepartmentService {
 	}
 
 	@Override
-	public List<DepartmentDomain> getDeparmentByCompany(CompanyDomain companyDomain) {
+	public List<DepartmentDomain> findDeparmentByCompany(CompanyDomain companyDomain) {
 		// TODO Auto-generated method stub
 		List<DepartmentDomain> departmentDomains = departmentDAO.getDeparmentByCompany(companyDomain);
-		List<UserDomain> userDomains = userDAO.getUserByCompany(companyDomain);
+		List<UserDomain> userDomains = userDAO.findUserByCompany(companyDomain);
 		HashMap<Long, DepartmentDomain> map = new HashMap<Long, DepartmentDomain>();
 		for (DepartmentDomain temp : departmentDomains) {
+			temp.setUserList(new LinkedList<>());
 			map.put(temp.getId(), temp);
 		}
 
 		for (UserDomain temp : userDomains) {
-			if(map.get(temp.getDepartmentId())!=null){
+			if (map.get(temp.getDepartmentId()) != null) {
 				map.get(temp.getDepartmentId()).getUserList().add(temp);
 			}
 		}

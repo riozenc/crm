@@ -3,7 +3,7 @@
 <mapper namespace="crm.webapp.acc.dao.UserDAO">
 	<select id="findByKey" parameterType="UserDomain" resultType="UserDomain"
 		useCache="true">
-		select ID,USER_ID,PHONE,MAIL_ADDRESS,USER_NAME,SEX,IMAGE_URL,STATUS
+		select ID,USER_ID,PHONE,MAIL_ADDRESS,USER_NAME,SEX,IMAGE_URL,REMARK,STATUS
 		from USER_INFO
 		<where>
 			<if test="id !=null">
@@ -16,7 +16,7 @@
 	</select>
 	<select id="findByWhere" parameterType="UserDomain" resultType="UserDomain"
 		useCache="true">
-		select ID,USER_ID,PHONE,MAIL_ADDRESS,USER_NAME,SEX,IMAGE_URL,STATUS
+		select ID,USER_ID,PHONE,MAIL_ADDRESS,USER_NAME,SEX,IMAGE_URL,REMARK,STATUS
 		from USER_INFO
 		<where>
 			<if test="id !=null">
@@ -47,9 +47,9 @@
 	</select>
 	<insert id="insert" parameterType="UserDomain" flushCache="true">
 		insert into
-		USER_INFO(ID,USER_ID,PASSWORD,PHONE,MAIL_ADDRESS,USER_NAME,SEX,IMAGE_URL,STATUS)
+		USER_INFO(ID,USER_ID,PASSWORD,PHONE,MAIL_ADDRESS,USER_NAME,SEX,IMAGE_URL,REMARK,STATUS)
 		values
-		(#{id},#{userId},#{password},#{phone},#{mailAddress},#{userName},#{sex},#{imageUrl},#{status})
+		(#{id},#{userId},#{password},#{phone},#{mailAddress},#{userName},#{sex},#{imageUrl},#{remark},#{status})
 	</insert>
 	<update id="update" parameterType="UserDomain" flushCache="true">
 		update USER_INFO
@@ -74,6 +74,9 @@
 			</if>
 			<if test="imageUrl !=null">
 				IMAGE_URL = #{imageUrl},
+			</if>
+			<if test="remark !=null">
+				REMARK = #{remark},
 			</if>
 			<if test="status !=null">
 				STATUS = #{status},
@@ -104,7 +107,7 @@
 	<select id="getUser" parameterType="UserDomain" resultType="UserDomain"
 		useCache="false" flushCache="true">
 		select
-		ID,USER_ID,PASSWORD,PHONE,MAIL_ADDRESS,USER_NAME,SEX,IMAGE_URL,STATUS
+		ID,USER_ID,PASSWORD,PHONE,MAIL_ADDRESS,USER_NAME,SEX,IMAGE_URL,REMARK,STATUS
 		from USER_INFO
 		<where>
 			<if test="userId !=null">
@@ -119,13 +122,38 @@
 		</where>
 	</select>
 
-	<select id="getUserByCompany" parameterType="CompanyDomain"
+	<select id="findUserByCompany" parameterType="CompanyDomain"
 		resultType="UserDomain">
-		SELECT b.ID,b.USER_ID,b.PHONE,b.MAIL_ADDRESS,b.USER_NAME,b.SEX,b.IMAGE_URL,b.STATUS,c.DEPARTMENT_ID FROM user_company_rel a LEFT JOIN user_info
-		b ON a.USER_ID = b.ID LEFT JOIN user_department_rel c ON a.USER_ID =
+		SELECT
+		b.ID,b.USER_ID,b.PHONE,b.MAIL_ADDRESS,b.USER_NAME,b.SEX,b.IMAGE_URL,b.STATUS,c.DEPARTMENT_ID
+		FROM user_company_rel a LEFT JOIN user_info
+		b ON a.USER_ID = b.ID LEFT
+		JOIN user_department_rel c ON a.USER_ID =
 		c.USER_ID
 		<where>
 			a.COMPANY_ID = #{id}
+		</where>
+	</select>
+
+
+	<select id="findUserByGroup" parameterType="GroupDomain"
+		resultType="UserDomain">
+		SELECT
+		b.ID,
+		b.USER_ID,
+		b.PHONE,
+		b.MAIL_ADDRESS,
+		b.USER_NAME,
+		b.SEX,
+		b.IMAGE_URL,
+		b. STATUS,
+		a.REMARK
+		FROM
+		user_group_rel a
+		LEFT JOIN user_info
+		b ON a.USER_ID = b.ID
+		<where>
+			a.GROUP_ID = #{id}
 		</where>
 	</select>
 

@@ -7,12 +7,16 @@ package crm.webapp.msg.domain;
 
 import java.util.Date;
 
-public class MessageDomain {
+import com.riozenc.quicktool.annotation.TablePrimaryKey;
+import com.riozenc.quicktool.mybatis.MybatisEntity;
 
+public class MessageDomain implements MybatisEntity{
+
+	@TablePrimaryKey
 	private Long id;// ID ID bigint TRUE FALSE TRUE
 	private String message;// 消息 MESSAGE varchar(50) 50 FALSE FALSE FALSE
-	private Long from;// 发送者 FROM bigint FALSE FALSE FALSE
-	private Long to;// 接收者 TO bigint FALSE FALSE FALSE
+	private Long fromId;// 发送者 FROM bigint FALSE FALSE FALSE
+	private Long toId;// 接收者 TO bigint FALSE FALSE FALSE
 	private String fromIp;// 发送者IP FROM_IP char(15) 15 FALSE FALSE FALSE
 	private String toIp;// 接收者IP TO_IP char(15) 15 FALSE FALSE FALSE
 	private Integer fromTerminal;// 发送者设备 FROM_TERMINAL int FALSE FALSE FALSE
@@ -38,20 +42,20 @@ public class MessageDomain {
 		this.message = message;
 	}
 
-	public Long getFrom() {
-		return from;
+	public Long getFromId() {
+		return fromId;
 	}
 
-	public void setFrom(Long from) {
-		this.from = from;
+	public void setFromId(Long fromId) {
+		this.fromId = fromId;
 	}
 
-	public Long getTo() {
-		return to;
+	public Long getToId() {
+		return toId;
 	}
 
-	public void setTo(Long to) {
-		this.to = to;
+	public void setToId(Long toId) {
+		this.toId = toId;
 	}
 
 	public String getFromIp() {

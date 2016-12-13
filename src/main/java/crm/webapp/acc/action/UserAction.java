@@ -61,5 +61,4 @@ public class UserAction extends BaseAction {
 		return JSONUtil.getJsonResult(principal.getUserDomain());
 	}
 
-
 }

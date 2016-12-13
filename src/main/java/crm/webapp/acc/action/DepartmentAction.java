@@ -48,9 +48,9 @@ public class DepartmentAction extends BaseAction {
 	}
 
 	@ResponseBody
-	@RequestMapping(params = "type=getDeparmentByCompany")
-	public String getDeparmentByCompany(CompanyDomain companyDomain) {
-		List<DepartmentDomain> list = departmentService.getDeparmentByCompany(companyDomain);
+	@RequestMapping(params = "type=findDeparmentByCompany")
+	public String findDeparmentByCompany(CompanyDomain companyDomain) {
+		List<DepartmentDomain> list = departmentService.findDeparmentByCompany(companyDomain);
 
 		
 

@@ -49,7 +49,8 @@ public class PasswordShiroRealm extends AuthorizingRealm {
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken)
 			throws AuthenticationException {
 		// TODO Auto-generated method stub
-
+		
+		
 		UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
 		String username = token.getUsername();
 		if (username != null && !"".equals(username.trim())) {

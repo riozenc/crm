@@ -19,7 +19,7 @@ import crm.common.security.token.UsernamePasswordToken;
 public class UserDomain implements MybatisEntity {
 
 	@TablePrimaryKey
-	private String id;// ID 用户号 char(20) 20 TRUE FALSE TRUE
+	private Long id;// ID 用户号 char(20) 20 TRUE FALSE TRUE
 	@TablePrimaryKey
 	private String userId;// USER_ID 用户自定义ID char(20) 20 TRUE FALSE TRUE
 	private String password;// 密码
@@ -29,6 +29,7 @@ public class UserDomain implements MybatisEntity {
 	private String userName;// USER_NAME 用户名称 char(15) 15 FALSE FALSE FALSE
 	private Integer sex;// SEX 性别 int FALSE FALSE FALSE
 	private String imageUrl;// IMAGE_URL 头像 varchar(20) 20 FALSE FALSE FALSE
+	private String remark;// 备注
 	private Integer status;// STATUS 状态 int FALSE FALSE FALSE
 
 	private Long departmentId;
@@ -41,11 +42,11 @@ public class UserDomain implements MybatisEntity {
 		// 通过正则判断是邮箱还是手机号给相应的属性赋值
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -119,6 +120,14 @@ public class UserDomain implements MybatisEntity {
 
 	public void setDepartmentId(Long departmentId) {
 		this.departmentId = departmentId;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 }

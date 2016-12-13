@@ -14,6 +14,7 @@ import com.riozenc.quicktool.mybatis.dao.AbstractTransactionDAOSupport;
 import com.riozenc.quicktool.mybatis.dao.BaseDAO;
 
 import crm.webapp.acc.domain.CompanyDomain;
+import crm.webapp.acc.domain.GroupDomain;
 import crm.webapp.acc.domain.UserDomain;
 
 @TransactionDAO
@@ -53,8 +54,11 @@ public class UserDAO extends AbstractTransactionDAOSupport implements BaseDAO<Us
 		return getPersistanceManager().load(getNamespace() + ".getUser", t);
 	}
 
-	public List<UserDomain> getUserByCompany(CompanyDomain companyDomain) {
-		return getPersistanceManager().find(getNamespace()+".getUserByCompany", companyDomain);
+	public List<UserDomain> findUserByCompany(CompanyDomain companyDomain) {
+		return getPersistanceManager().find(getNamespace() + ".findUserByCompany", companyDomain);
 	}
 
+	public List<UserDomain> findUserByGroup(GroupDomain groupDomain) {
+		return getPersistanceManager().find(getNamespace() + ".findUserByGroup", groupDomain);
+	}
 }

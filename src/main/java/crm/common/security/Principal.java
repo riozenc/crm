@@ -31,6 +31,13 @@ public class Principal {
 	public Principal(UserDomain userDomain) {
 		userDomain.setPassword("Want password?");
 		this.userDomain = userDomain;
+		this.userId = userDomain.getUserId();
+		this.userName= userDomain.getUserName();
+		this.phone = userDomain.getPhone();
+		this.mailAddress = userDomain.getMailAddress();
+		this.sex = userDomain.getSex();
+		this.imageUrl = userDomain.getImageUrl();
+		
 	}
 
 	public String getUserId() {

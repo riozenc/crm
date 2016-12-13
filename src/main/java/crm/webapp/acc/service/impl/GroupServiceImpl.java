@@ -11,7 +11,9 @@ import com.riozenc.quicktool.annotation.TransactionDAO;
 import com.riozenc.quicktool.annotation.TransactionService;
 
 import crm.webapp.acc.dao.GroupDAO;
+import crm.webapp.acc.dao.UserDAO;
 import crm.webapp.acc.domain.GroupDomain;
+import crm.webapp.acc.domain.UserDomain;
 import crm.webapp.acc.service.GroupService;
 
 @TransactionService
@@ -19,6 +21,8 @@ public class GroupServiceImpl implements GroupService {
 
 	@TransactionDAO
 	private GroupDAO groupDAO;
+	@TransactionDAO
+	private UserDAO userDAO;
 
 	@Override
 	public int insert(GroupDomain t) {
@@ -48,6 +52,23 @@ public class GroupServiceImpl implements GroupService {
 	public List<GroupDomain> findByWhere(GroupDomain t) {
 		// TODO Auto-generated method stub
 		return groupDAO.findByWhere(t);
+	}
+
+	@Override
+	public List<GroupDomain> findGroupByUser(UserDomain userDomain) {
+		// TODO Auto-generated method stub
+		return groupDAO.findGroupByUser(userDomain);
+	}
+
+	@Override
+	public GroupDomain getGroupInfo(GroupDomain groupDomain) {
+		// TODO Auto-generated method stub
+
+		GroupDomain group = groupDAO.findByKey(groupDomain);
+		List<UserDomain> userDomains = userDAO.findUserByGroup(groupDomain);
+		group.getUserList().addAll(userDomains);
+
+		return group;
 	}
 
 }

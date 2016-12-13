@@ -77,4 +77,14 @@
 			</if>
 		</where>
 	</delete>
+
+
+	<select id="findGroupByUser" parameterType="UserDomain"
+		resultType="GroupDomain" useCache="true">
+		SELECT b.* FROM user_group_rel a LEFT JOIN group_info b ON a.GROUP_ID
+		= b.ID
+		<where>
+			a.USER_ID = #{id}
+		</where>
+	</select>
 </mapper>

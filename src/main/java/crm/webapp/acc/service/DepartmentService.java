@@ -13,5 +13,5 @@ import crm.webapp.acc.domain.DepartmentDomain;
 
 public interface DepartmentService extends BaseService<DepartmentDomain> {
 
-	public List<DepartmentDomain> getDeparmentByCompany(CompanyDomain companyDomain);
+	public List<DepartmentDomain> findDeparmentByCompany(CompanyDomain companyDomain);
 }

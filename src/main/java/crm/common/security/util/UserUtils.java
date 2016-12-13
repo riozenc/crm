@@ -8,6 +8,8 @@ package crm.common.security.util;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 
+import com.riozenc.quicktool.exception.LoginTimeOutException;
+
 import crm.common.security.Principal;
 
 public class UserUtils {
@@ -15,6 +17,9 @@ public class UserUtils {
 		Subject subject = SecurityUtils.getSubject();
 		Principal principal = (Principal) subject.getPrincipal();
 
+		if (principal == null) {
+			throw new LoginTimeOutException("未登录...");
+		}
 		return principal;
 	}
 }

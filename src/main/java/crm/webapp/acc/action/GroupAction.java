@@ -5,13 +5,20 @@
  */
 package crm.webapp.acc.action;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.riozenc.quicktool.common.util.json.JSONUtil;
 
 import crm.common.security.util.UserUtils;
 import crm.common.webapp.base.action.BaseAction;
+import crm.webapp.acc.domain.GroupDomain;
+import crm.webapp.acc.domain.UserDomain;
 import crm.webapp.acc.service.GroupService;
 
 @ControllerAdvice
@@ -22,12 +29,18 @@ public class GroupAction extends BaseAction {
 	@Qualifier("groupServiceImpl")
 	private GroupService groupservice;
 
+	@ResponseBody
+	@RequestMapping(params = "type=getGroupByUser")
 	public String getGroupByUser() {
-		
-		
+		UserDomain userDomain = UserUtils.getPrincipal().getUserDomain();
+		List<GroupDomain> list = groupservice.findGroupByUser(userDomain);
+		return JSONUtil.getJsonResult(list);
+	}
 
-		UserUtils.getPrincipal().getUserDomain();
-		return null;
-
+	@ResponseBody
+	@RequestMapping(params = "type=getGroupInfo")
+	public String getGroupInfo(GroupDomain groupDomain) {
+		GroupDomain group = groupservice.getGroupInfo(groupDomain);
+		return JSONUtil.getJsonResult(group);
 	}
 }

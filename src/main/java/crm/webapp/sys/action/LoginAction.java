@@ -5,6 +5,7 @@
  */
 package crm.webapp.sys.action;
 
+import java.io.Serializable;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ import com.google.common.collect.Maps;
 import com.riozenc.quicktool.common.util.StringUtils;
 import com.riozenc.quicktool.common.util.json.JSONUtil;
 
+import crm.common.cache.LoginSessionCache;
 import crm.common.security.Principal;
 import crm.common.security.filter.PasswordShiroFilter;
 import crm.common.webapp.base.action.BaseAction;
@@ -37,7 +39,7 @@ import crm.common.webapp.base.action.BaseAction;
 public class LoginAction extends BaseAction {
 
 	@ResponseBody
-	 @RequestMapping(value = "/login")
+	@RequestMapping(value = "/login")
 	public String login(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
 
 		String errorClassName = (String) httpServletRequest
@@ -51,6 +53,9 @@ public class LoginAction extends BaseAction {
 				// 非法请求
 				return loginFail("IncorrectCredentialsException", httpServletRequest, httpServletResponse);
 			}
+
+			LoginSessionCache.put(principal.getUserId(), subject.getSession().getId());
+
 			return JSONUtil.writeSuccessMsg("登录成功,欢迎" + principal.getUserName() + "!");
 		} else {
 			// 失败
@@ -96,7 +101,7 @@ public class LoginAction extends BaseAction {
 		return JSONUtil.writeErrorMsg(message);
 	}
 
-	 @RequestMapping(value = "/logout")
+	@RequestMapping(value = "/logout")
 	public String logout(String username, String password) {
 		Subject subject = SecurityUtils.getSubject();
 		SecurityUtils.getSecurityManager().logout(subject);

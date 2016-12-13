@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="crm.webapp.msg.dao.MessageDAO">
+	<select id="findByKey" parameterType="MessageDomain" resultType="MessageDomain"
+		useCache="true">
+		select
+		ID,MESSAGE,FROM_ID,TO_ID,FROM_IP,TO_IP,FROM_TERMINAL,TO_TERMINAL,DATETIME,RECEIVE_STATUS,STATUS
+		from MESSAGE_INFO
+		<where>
+			<if test="id !=null">
+				and ID = #{id}
+			</if>
+		</where>
+	</select>
+	<select id="findByWhere" parameterType="MessageDomain"
+		resultType="MessageDomain" useCache="true">
+		select
+		ID,MESSAGE,FROM_ID,TO_ID,FROM_IP,TO_IP,FROM_TERMINAL,TO_TERMINAL,DATETIME,RECEIVE_STATUS,STATUS
+		from MESSAGE_INFO
+		<where>
+			<if test="id !=null">
+				and ID = #{id}
+			</if>
+			<if test="message !=null">
+				and MESSAGE = #{message}
+			</if>
+			<if test="fromId !=null">
+				and FROM_ID = #{fromId}
+			</if>
+			<if test="toId !=null">
+				and TO_ID = #{toId}
+			</if>
+			<if test="fromIp !=null">
+				and FROM_IP = #{fromIp}
+			</if>
+			<if test="toIp !=null">
+				and TO_IP = #{toIp}
+			</if>
+			<if test="fromTerminal !=null">
+				and FROM_TERMINAL = #{fromTerminal}
+			</if>
+			<if test="toTerminal !=null">
+				and TO_TERMINAL = #{toTerminal}
+			</if>
+			<if test="datetime !=null">
+				and DATETIME = #{datetime}
+			</if>
+			<if test="receiveStatus !=null">
+				and RECEIVE_STATUS = #{receiveStatus}
+			</if>
+			<if test="status !=null">
+				and STATUS = #{status}
+			</if>
+		</where>
+	</select>
+	<insert id="insert" parameterType="MessageDomain" flushCache="true">
+		insert into
+		MESSAGE_INFO(ID,MESSAGE,FROM_ID,TO_ID,FROM_IP,TO_IP,FROM_TERMINAL,TO_TERMINAL,DATETIME,RECEIVE_STATUS,STATUS)
+		values
+		(#{id},#{message},#{fromId},#{toId},#{fromIp},#{toIp},#{fromTerminal},#{toTerminal},#{datetime},#{receiveStatus},#{status})
+	</insert>
+	<update id="update" parameterType="MessageDomain" flushCache="true">
+		update MESSAGE_INFO
+		<set>
+			<if test="id !=null">
+				ID = #{id},
+			</if>
+			<if test="message !=null">
+				MESSAGE = #{message},
+			</if>
+			<if test="fromId !=null">
+				FROM_ID = #{fromId},
+			</if>
+			<if test="toId !=null">
+				TO_ID = #{toId},
+			</if>
+			<if test="fromIp !=null">
+				FROM_IP = #{fromIp},
+			</if>
+			<if test="toIp !=null">
+				TO_IP = #{toIp},
+			</if>
+			<if test="fromTerminal !=null">
+				FROM_TERMINAL = #{fromTerminal},
+			</if>
+			<if test="toTerminal !=null">
+				TO_TERMINAL = #{toTerminal},
+			</if>
+			<if test="datetime !=null">
+				DATETIME = #{datetime},
+			</if>
+			<if test="receiveStatus !=null">
+				RECEIVE_STATUS = #{receiveStatus},
+			</if>
+			<if test="status !=null">
+				STATUS = #{status},
+			</if>
+		</set>
+		<where>
+			<if test="id !=null">
+				and ID = #{id}
+			</if>
+		</where>
+	</update>
+	<delete id="delete" parameterType="MessageDomain" flushCache="true">
+		delete from MESSAGE_INFO
+		<where>
+			<if test="id !=null">
+				and ID = #{id}
+			</if>
+		</where>
+	</delete>
+</mapper>

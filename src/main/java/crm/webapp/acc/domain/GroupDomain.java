@@ -5,7 +5,6 @@
  */
 package crm.webapp.acc.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.riozenc.quicktool.annotation.TablePrimaryKey;
@@ -25,9 +24,10 @@ public class GroupDomain implements MybatisEntity {
 	private String groupNo;// GROUP_NO 群组号 char(15) 15 FALSE FALSE FALSE
 	private String groupName;// GROUP_NAME 群组名称 char(30) 30 FALSE FALSE FALSE
 	private Integer groupType;// GROUP_TYPE 群组类别 int FALSE FALSE FALSE
+	private String remark;
 	private Integer status;// STATUS 状态 int FALSE FALSE FALSE
 
-	private List<UserDomain> userList = new ArrayList<UserDomain>();
+	private List<UserDomain> userList;
 
 	public Long getId() {
 		return id;
@@ -59,6 +59,14 @@ public class GroupDomain implements MybatisEntity {
 
 	public void setGroupType(Integer groupType) {
 		this.groupType = groupType;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 	public Integer getStatus() {

@@ -32,6 +32,8 @@ public class MessageAction extends BaseAction {
 	@ResponseBody
 	@RequestMapping(params = "type=revice")
 	public String reviceMessage(MessageDomain messageDomain) {
+
+		messageDomain.setReadStatus(0);
 		messageService.insert(messageDomain);
 		return JSONUtil.writeSuccessMsg("接收成功.");
 	}
@@ -47,10 +49,26 @@ public class MessageAction extends BaseAction {
 		UserDomain userDomain = UserUtils.getPrincipal().getUserDomain();
 
 		MessageDomain messageDomain = new MessageDomain();
-		messageDomain.setToId(userDomain.getId());
-		messageDomain.setReceiveStatus(0);// 0未读
+		messageDomain.setToId(userDomain.getUserId());
+		messageDomain.setReadStatus(0);// 0未读
 		List<MessageDomain> list = messageService.findByWhere(messageDomain);
 
 		return JSONUtil.getJsonResult(list);
+	}
+
+	/**
+	 * 标记已读
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(params = "type=readMessage")
+	public String readMessage(Long id) {
+		MessageDomain messageDomain = new MessageDomain();
+		messageDomain.setId(id);
+		messageDomain.setReadStatus(1);
+		messageService.update(messageDomain);
+		return JSONUtil.writeSuccessMsg("标记已读.");
 	}
 }

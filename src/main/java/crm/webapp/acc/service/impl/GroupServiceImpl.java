@@ -66,8 +66,7 @@ public class GroupServiceImpl implements GroupService {
 
 		GroupDomain group = groupDAO.findByKey(groupDomain);
 		List<UserDomain> userDomains = userDAO.findUserByGroup(groupDomain);
-		group.getUserList().addAll(userDomains);
-
+		group.setUserList(userDomains);
 		return group;
 	}
 

@@ -10,13 +10,13 @@ import java.util.Date;
 import com.riozenc.quicktool.annotation.TablePrimaryKey;
 import com.riozenc.quicktool.mybatis.MybatisEntity;
 
-public class MessageDomain implements MybatisEntity{
+public class MessageDomain implements MybatisEntity {
 
 	@TablePrimaryKey
 	private Long id;// ID ID bigint TRUE FALSE TRUE
 	private String message;// 消息 MESSAGE varchar(50) 50 FALSE FALSE FALSE
-	private Long fromId;// 发送者 FROM bigint FALSE FALSE FALSE
-	private Long toId;// 接收者 TO bigint FALSE FALSE FALSE
+	private String fromId;// 发送者 FROM bigint FALSE FALSE FALSE
+	private String toId;// 接收者 TO bigint FALSE FALSE FALSE
 	private String fromIp;// 发送者IP FROM_IP char(15) 15 FALSE FALSE FALSE
 	private String toIp;// 接收者IP TO_IP char(15) 15 FALSE FALSE FALSE
 	private Integer fromTerminal;// 发送者设备 FROM_TERMINAL int FALSE FALSE FALSE
@@ -24,6 +24,7 @@ public class MessageDomain implements MybatisEntity{
 	private Date datetime;// 发送时间 DATE datetime FALSE FALSE FALSE
 
 	private Integer receiveStatus;// 接收状态 RECEIVE_STATUS int FALSE FALSE FALSE
+	private Integer readStatus;// 读取状态
 	private Integer status;// STATUS STATUS int FALSE FALSE FALSE
 
 	public Long getId() {
@@ -42,19 +43,19 @@ public class MessageDomain implements MybatisEntity{
 		this.message = message;
 	}
 
-	public Long getFromId() {
+	public String getFromId() {
 		return fromId;
 	}
 
-	public void setFromId(Long fromId) {
+	public void setFromId(String fromId) {
 		this.fromId = fromId;
 	}
 
-	public Long getToId() {
+	public String getToId() {
 		return toId;
 	}
 
-	public void setToId(Long toId) {
+	public void setToId(String toId) {
 		this.toId = toId;
 	}
 
@@ -104,6 +105,14 @@ public class MessageDomain implements MybatisEntity{
 
 	public void setReceiveStatus(Integer receiveStatus) {
 		this.receiveStatus = receiveStatus;
+	}
+
+	public Integer getReadStatus() {
+		return readStatus;
+	}
+
+	public void setReadStatus(Integer readStatus) {
+		this.readStatus = readStatus;
 	}
 
 	public Integer getStatus() {

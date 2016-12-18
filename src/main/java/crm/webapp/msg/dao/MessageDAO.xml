@@ -4,7 +4,7 @@
 	<select id="findByKey" parameterType="MessageDomain" resultType="MessageDomain"
 		useCache="true">
 		select
-		ID,MESSAGE,FROM_ID,TO_ID,FROM_IP,TO_IP,FROM_TERMINAL,TO_TERMINAL,DATETIME,RECEIVE_STATUS,STATUS
+		ID,MESSAGE,FROM_ID,TO_ID,FROM_IP,TO_IP,FROM_TERMINAL,TO_TERMINAL,DATETIME,RECEIVE_STATUS,READ_STATUS,STATUS
 		from MESSAGE_INFO
 		<where>
 			<if test="id !=null">
@@ -15,7 +15,7 @@
 	<select id="findByWhere" parameterType="MessageDomain"
 		resultType="MessageDomain" useCache="true">
 		select
-		ID,MESSAGE,FROM_ID,TO_ID,FROM_IP,TO_IP,FROM_TERMINAL,TO_TERMINAL,DATETIME,RECEIVE_STATUS,STATUS
+		ID,MESSAGE,FROM_ID,TO_ID,FROM_IP,TO_IP,FROM_TERMINAL,TO_TERMINAL,DATETIME,RECEIVE_STATUS,READ_STATUS,STATUS
 		from MESSAGE_INFO
 		<where>
 			<if test="id !=null">
@@ -48,6 +48,9 @@
 			<if test="receiveStatus !=null">
 				and RECEIVE_STATUS = #{receiveStatus}
 			</if>
+			<if test="readStatus !=null">
+				and READ_STATUS = #{readStatus}
+			</if>
 			<if test="status !=null">
 				and STATUS = #{status}
 			</if>
@@ -55,9 +58,9 @@
 	</select>
 	<insert id="insert" parameterType="MessageDomain" flushCache="true">
 		insert into
-		MESSAGE_INFO(ID,MESSAGE,FROM_ID,TO_ID,FROM_IP,TO_IP,FROM_TERMINAL,TO_TERMINAL,DATETIME,RECEIVE_STATUS,STATUS)
+		MESSAGE_INFO(ID,MESSAGE,FROM_ID,TO_ID,FROM_IP,TO_IP,FROM_TERMINAL,TO_TERMINAL,DATETIME,RECEIVE_STATUS,READ_STATUS,STATUS)
 		values
-		(#{id},#{message},#{fromId},#{toId},#{fromIp},#{toIp},#{fromTerminal},#{toTerminal},#{datetime},#{receiveStatus},#{status})
+		(#{id},#{message},#{fromId},#{toId},#{fromIp},#{toIp},#{fromTerminal},#{toTerminal},#{datetime},#{receiveStatus},#{readStatus},#{status})
 	</insert>
 	<update id="update" parameterType="MessageDomain" flushCache="true">
 		update MESSAGE_INFO
@@ -91,6 +94,9 @@
 			</if>
 			<if test="receiveStatus !=null">
 				RECEIVE_STATUS = #{receiveStatus},
+			</if>
+			<if test="readStatus !=null">
+				READ_STATUS = #{readStatus},
 			</if>
 			<if test="status !=null">
 				STATUS = #{status},

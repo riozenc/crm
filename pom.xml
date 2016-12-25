@@ -77,7 +77,32 @@
 			<version>5.1.38</version>
 		</dependency>
 	</dependencies>
+	
+	
 	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>UTF-8</encoding>
+					<!-- <compilerArgs> -->
+					<!-- <arg>-verbose</arg> -->
+					<!-- <arg>-Xlint:unchecked</arg> -->
+					<!-- <arg>-Xlint:deprecation</arg> -->
+					<!-- <arg>-bootclasspath</arg> -->
+					<!-- <arg>${env.JAVA_HOME}/jre/lib/rt.jar</arg> -->
+					<!-- <arg>-extdirs</arg> -->
+					<!-- <arg>lib</arg> -->
+					<!-- </compilerArgs> -->
+				</configuration>
+			</plugin>
+			
+
+		</plugins>
 		<finalName>crm</finalName>
 	</build>
+	
 </project>

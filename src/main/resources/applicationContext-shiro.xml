@@ -24,7 +24,7 @@
 		<property name="loginUrl" value="/loginAction/login.do" />
 		<property name="successUrl" value="/loginAction/login.do" />
 		<!-- 没有权限跳转的地址 -->
-		<property name="unauthorizedUrl" value="/index.jsp" />
+		<property name="unauthorizedUrl" value="/loginAction/login.do" />
 
 		<property name="filters">
 			<map>

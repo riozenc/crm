@@ -2,7 +2,11 @@ package crm.webapp.msg.domain;
 
 import java.util.Date;
 
-public class GroupMessageDomain {
+import com.riozenc.quicktool.annotation.TablePrimaryKey;
+import com.riozenc.quicktool.mybatis.MybatisEntity;
+
+public class GroupMessageDomain implements MybatisEntity{
+	@TablePrimaryKey
 	private Long id;// ID bigint 20 0 0 -1 0 0 0 0 -1 0
 	private String message;// MESSAGE varchar 4096 0 -1 0 0 0 0 0 utf8
 							// utf8_general_ci 0 0

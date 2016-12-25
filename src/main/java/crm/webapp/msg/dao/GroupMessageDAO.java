@@ -1,21 +1,15 @@
-package crm.webapp.msg.service.impl;
+package crm.webapp.msg.dao;
 
 import java.util.List;
 
 import com.riozenc.quicktool.annotation.TransactionDAO;
-import com.riozenc.quicktool.annotation.TransactionService;
+import com.riozenc.quicktool.mybatis.dao.AbstractTransactionDAOSupport;
+import com.riozenc.quicktool.mybatis.dao.BaseDAO;
 
-import crm.webapp.acc.domain.UserDomain;
-import crm.webapp.msg.dao.GroupMessageDAO;
 import crm.webapp.msg.domain.GroupMessageDomain;
-import crm.webapp.msg.domain.MessageDomain;
-import crm.webapp.msg.service.GroupMessageService;
 
-@TransactionService
-public class GroupMessageServiceImpl implements GroupMessageService {
-
-	@TransactionDAO
-	private GroupMessageDAO groupMessageDAO;
+@TransactionDAO
+public class GroupMessageDAO extends AbstractTransactionDAOSupport implements BaseDAO<GroupMessageDomain> {
 
 	@Override
 	public int insert(GroupMessageDomain t) {
@@ -44,16 +38,6 @@ public class GroupMessageServiceImpl implements GroupMessageService {
 	@Override
 	public List<GroupMessageDomain> findByWhere(GroupMessageDomain t) {
 		// TODO Auto-generated method stub
-		return groupMessageDAO.findByWhere(t);
-	}
-
-	@Override
-	public List<GroupMessageDomain> findUnReadMessage(UserDomain userDomain) {
-		// TODO Auto-generated method stub
-		
-		
-		
-
 		return null;
 	}
 

@@ -91,6 +91,7 @@ public class KickoutSessionFilter extends AdviceFilter {
 			for (Session session : sessions) {
 				if (oldSessionId.equals(session.getId())) {
 					session.setTimeout(0);// 设置session立即失效，即将其踢出系统
+					System.out.println("踢了" + session.getId());
 					break;
 				}
 			}

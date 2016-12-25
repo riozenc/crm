@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.web.servlet.ShiroHttpServletRequest;
+import org.apache.shiro.web.servlet.ShiroHttpServletResponse;
 import org.apache.shiro.web.util.WebUtils;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +39,31 @@ import crm.common.webapp.base.action.BaseAction;
 @ControllerAdvice
 @RequestMapping("loginAction")
 public class LoginAction extends BaseAction {
+
+	@ResponseBody
+	@RequestMapping(value = "/test")
+	public String test(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+		System.out.println("ttt");
+		return login(httpServletRequest, httpServletResponse);
+	}
+
+	@ResponseBody
+	@RequestMapping(params = "type=test1")
+	public String test1(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+
+		System.out.println(httpServletRequest.getRequestURI());
+		
+		System.out.println("ttt111");
+		return login(httpServletRequest, httpServletResponse);
+	}
+	
+	@ResponseBody
+	@RequestMapping(params = "type=test2")
+	public String test2(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+
+		System.out.println("ttt222");
+		return login(httpServletRequest, httpServletResponse);
+	}
 
 	@ResponseBody
 	@RequestMapping(value = "/login")

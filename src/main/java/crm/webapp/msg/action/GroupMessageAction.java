@@ -32,9 +32,15 @@ public class GroupMessageAction extends BaseAction {
 	@RequestMapping(params = "type=findUnReadMessage")
 	public String findUnReadMessage() {
 		UserDomain userDomain = UserUtils.getPrincipal().getUserDomain();
-	
 
 		groupMessageService.findUnReadMessage(userDomain);
+		return null;
+	}
+
+	@ResponseBody
+	@RequestMapping(params = "type=updateOperTime")
+	public String updateOperTime(String userId, String groupId) {
+
 		return null;
 	}
 

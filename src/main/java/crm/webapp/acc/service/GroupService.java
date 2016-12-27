@@ -16,4 +16,5 @@ public interface GroupService extends BaseService<GroupDomain> {
 	public List<GroupDomain> findGroupByUser(UserDomain userDomain);
 
 	public GroupDomain getGroupInfo(GroupDomain groupDomain);
+
 }

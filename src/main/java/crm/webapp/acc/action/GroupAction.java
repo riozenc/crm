@@ -43,4 +43,5 @@ public class GroupAction extends BaseAction {
 		GroupDomain group = groupservice.getGroupInfo(groupDomain);
 		return JSONUtil.getJsonResult(group);
 	}
+
 }

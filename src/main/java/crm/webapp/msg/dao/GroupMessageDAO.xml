@@ -84,4 +84,25 @@
 			</if>
 		</where>
 	</delete>
+
+	<update id="refreshViewTime" parameterType="Map" flushCache="true">
+		update user_group_rel
+		<set>
+			VIEW_TIME = now()
+		</set>
+		<where>
+			USER_ID=#{1} AND GROUP_NO=#{2}
+		</where>
+	</update>
+
+	<select id="findUnReadMessage" parameterType="UserDomain"
+		resultType="GroupMessageDomain" useCache="true">
+		SELECT * FROM user_group_rel a LEFT JOIN group_message_info b ON
+		a.GROUP_NO = b.TO_ID
+		<where>
+			a.VIEW_TIME &lt;= b.DATE AND a.USER_ID = #{id} AND b.FROM_ID != #{userId}
+			AND a.`STATUS` =
+			1 AND b.`STATUS` = 1
+		</where>
+	</select>
 </mapper>

@@ -77,13 +77,13 @@
 			<version>5.1.38</version>
 		</dependency>
 	</dependencies>
-	
-	
+
+
 	<build>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				
+				<version>3.3</version>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
@@ -99,10 +99,24 @@
 					<!-- </compilerArgs> -->
 				</configuration>
 			</plugin>
-			
+
 
 		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
+		</resources>
 		<finalName>crm</finalName>
 	</build>
-	
+
 </project>

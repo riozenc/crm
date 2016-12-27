@@ -125,7 +125,7 @@
 	<select id="findUserByCompany" parameterType="CompanyDomain"
 		resultType="UserDomain">
 		SELECT
-		b.ID,b.USER_ID,b.PHONE,b.MAIL_ADDRESS,b.USER_NAME,b.SEX,b.IMAGE_URL,b.STATUS,c.DEPARTMENT_ID
+		b.ID,b.USER_ID,b.PHONE,b.MAIL_ADDRESS,b.USER_NAME,b.SEX,b.IMAGE_URL,b.REMARK,b.STATUS,c.DEPARTMENT_ID
 		FROM user_company_rel a LEFT JOIN user_info
 		b ON a.USER_ID = b.ID LEFT
 		JOIN user_department_rel c ON a.USER_ID =
@@ -153,7 +153,7 @@
 		LEFT JOIN user_info
 		b ON a.USER_ID = b.ID
 		<where>
-			a.GROUP_ID = #{id}
+			a.GROUP_NO = #{groupNo}
 		</where>
 	</select>
 

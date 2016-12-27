@@ -8,4 +8,5 @@ import crm.webapp.msg.domain.GroupMessageDomain;
 
 public interface GroupMessageService extends BaseService<GroupMessageDomain> {
 	public List<GroupMessageDomain> findUnReadMessage(UserDomain userDomain);
+	public int refreshViewTime(String groupNo);
 }

@@ -6,10 +6,12 @@
 package crm.webapp.acc.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.riozenc.quicktool.annotation.TransactionDAO;
 import com.riozenc.quicktool.mybatis.dao.AbstractTransactionDAOSupport;
 import com.riozenc.quicktool.mybatis.dao.BaseDAO;
+
 import crm.webapp.acc.domain.GroupDomain;
 import crm.webapp.acc.domain.UserDomain;
 

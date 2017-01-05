@@ -44,7 +44,7 @@ public class DepartmentAction extends BaseAction {
 	@RequestMapping(params = "type=getDepartment")
 	public String getDepartment(DepartmentDomain departmentDomain) {
 		List<DepartmentDomain> list = departmentService.findByWhere(departmentDomain);
-		return JSONUtil.getJsonResult(list);
+		return JSONUtil.toJsonString(list);
 	}
 
 	@ResponseBody
@@ -54,6 +54,6 @@ public class DepartmentAction extends BaseAction {
 
 		
 
-		return JSONUtil.getJsonResult(list);
+		return JSONUtil.toJsonString(list);
 	}
 }

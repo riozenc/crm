@@ -47,7 +47,7 @@ public class CompanyAction extends BaseAction {
 		
 		
 		
-		return JSONUtil.getJsonResult(company);
+		return JSONUtil.toJsonString(company);
 	}
 	
 	

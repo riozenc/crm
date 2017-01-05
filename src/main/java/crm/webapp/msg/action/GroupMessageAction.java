@@ -50,7 +50,7 @@ public class GroupMessageAction extends BaseAction {
 		UserDomain userDomain = UserUtils.getPrincipal().getUserDomain();
 
 		List<GroupMessageDomain> list = groupMessageService.findUnReadMessage(userDomain);
-		return JSONUtil.getJsonResult(list);
+		return JSONUtil.toJsonString(list);
 	}
 
 	@ResponseBody

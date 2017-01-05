@@ -33,6 +33,9 @@ public class UserServiceImpl implements UserService {
 	public int insert(UserDomain t) {
 		// TODO Auto-generated method stub
 		t.setPassword(WebPasswordUtils.encodePassword(t.getPassword()));
+
+		userDAO1.insert(t);
+
 		return userDAO.insert(t);
 	}
 

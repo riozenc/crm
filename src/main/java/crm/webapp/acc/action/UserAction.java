@@ -48,7 +48,7 @@ public class UserAction extends BaseAction {
 	@RequestMapping(params = "type=getUserById")
 	public String getUserById(UserDomain userDomain) {
 		UserDomain user = userService.findByKey(userDomain);
-		return JSONUtil.getJsonResult(user);
+		return JSONUtil.toJsonString(user);
 	}
 
 	@ResponseBody
@@ -58,7 +58,30 @@ public class UserAction extends BaseAction {
 		Principal principal = UserUtils.getPrincipal();
 
 		// UserDomain user = userService.getUser(userDomain);
-		return JSONUtil.getJsonResult(principal.getUserDomain());
+		return JSONUtil.toJsonString(principal.getUserDomain());
 	}
-
+	
+	@ResponseBody
+	@RequestMapping(params = "type=test1")
+	public String test1(){
+		
+		UserDomain userDomain = new UserDomain();
+		userDomain.setUserId("adsads");
+		
+		CompanyDomain companyDomain = new CompanyDomain();
+		companyDomain.setCompanyNo("3");
+		
+		userService.insertUserRole(userDomain, companyDomain);
+		return null;
+	}
+	
+	@ResponseBody
+	@RequestMapping(params = "type=test2")
+	public String test2(){
+		UserDomain userDomain = new UserDomain();
+		userDomain.setUserId("adsads");
+		
+		userService.insert(userDomain);
+		return null;
+	}
 }

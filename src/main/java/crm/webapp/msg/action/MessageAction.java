@@ -53,7 +53,7 @@ public class MessageAction extends BaseAction {
 		messageDomain.setReadStatus(0);// 0未读
 		List<MessageDomain> list = messageService.findByWhere(messageDomain);
 
-		return JSONUtil.getJsonResult(list);
+		return JSONUtil.toJsonString(list);
 	}
 
 	/**

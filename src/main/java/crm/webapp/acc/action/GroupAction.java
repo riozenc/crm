@@ -34,14 +34,14 @@ public class GroupAction extends BaseAction {
 	public String getGroupByUser() {
 		UserDomain userDomain = UserUtils.getPrincipal().getUserDomain();
 		List<GroupDomain> list = groupservice.findGroupByUser(userDomain);
-		return JSONUtil.getJsonResult(list);
+		return JSONUtil.toJsonString(list);
 	}
 
 	@ResponseBody
 	@RequestMapping(params = "type=getGroupInfo")
 	public String getGroupInfo(GroupDomain groupDomain) {
 		GroupDomain group = groupservice.getGroupInfo(groupDomain);
-		return JSONUtil.getJsonResult(group);
+		return JSONUtil.toJsonString(group);
 	}
 
 }

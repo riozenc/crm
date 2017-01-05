@@ -5,6 +5,9 @@
  */
 package crm.webapp.acc.action;
 
+import java.sql.SQLException;
+
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.riozenc.quicktool.common.util.json.JSONUtil;
+import com.riozenc.quicktool.mybatis.db.DbFactory;
 
 import crm.common.security.Principal;
 import crm.common.security.util.UserUtils;
@@ -60,28 +64,48 @@ public class UserAction extends BaseAction {
 		// UserDomain user = userService.getUser(userDomain);
 		return JSONUtil.toJsonString(principal.getUserDomain());
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(params = "type=test1")
-	public String test1(){
-		
+	public String test1() {
+
 		UserDomain userDomain = new UserDomain();
 		userDomain.setUserId("adsads");
-		
+
 		CompanyDomain companyDomain = new CompanyDomain();
 		companyDomain.setCompanyNo("3");
-		
+
 		userService.insertUserRole(userDomain, companyDomain);
 		return null;
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(params = "type=test2")
-	public String test2(){
+	public String test2() {
 		UserDomain userDomain = new UserDomain();
 		userDomain.setUserId("adsads");
-		
+
 		userService.insert(userDomain);
 		return null;
+	}
+
+	@ResponseBody
+	@RequestMapping(params = "type=test3")
+	public void test3() {
+		SqlSession sqlSession = DbFactory.getSqlSessionFactory().openSession(false);
+
+		try {
+			sqlSession.getConnection().setAutoCommit(false);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		UserDomain userDomain = new UserDomain();
+		userDomain.setUserId("adsadd");
+
+		int i = sqlSession.insert("crm.webapp.acc.dao.UserDAO.insert", userDomain);
+		System.out.println(i);
+		sqlSession.commit();
 	}
 }

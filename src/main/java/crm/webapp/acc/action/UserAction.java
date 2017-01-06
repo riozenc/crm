@@ -89,23 +89,5 @@ public class UserAction extends BaseAction {
 		return null;
 	}
 
-	@ResponseBody
-	@RequestMapping(params = "type=test3")
-	public void test3() {
-		SqlSession sqlSession = DbFactory.getSqlSessionFactory().openSession(false);
-
-		try {
-			sqlSession.getConnection().setAutoCommit(false);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		UserDomain userDomain = new UserDomain();
-		userDomain.setUserId("adsadd");
-
-		int i = sqlSession.insert("crm.webapp.acc.dao.UserDAO.insert", userDomain);
-		System.out.println(i);
-		sqlSession.commit();
-	}
+	
 }

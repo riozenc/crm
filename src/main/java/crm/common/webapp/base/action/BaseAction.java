@@ -27,10 +27,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.NativeWebRequest;
 
+import com.riozenc.quicktool.beanvalidator.BeanValidators;
 import com.riozenc.quicktool.common.util.date.DateUtil;
 import com.riozenc.quicktool.common.util.json.JSONUtil;
 
-import crm.common.beanvalidator.BeanValidators;
+
 
 public class BaseAction {
 	protected Logger logger = LogManager.getLogger(getClass());

@@ -5,9 +5,9 @@
  */
 package crm.webapp.acc.action;
 
-import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.riozenc.quicktool.common.util.json.JSONUtil;
-import com.riozenc.quicktool.mybatis.db.DbFactory;
 
 import crm.common.security.Principal;
 import crm.common.security.util.UserUtils;
@@ -89,5 +88,22 @@ public class UserAction extends BaseAction {
 		return null;
 	}
 
-	
+	@ResponseBody
+	@RequestMapping(params = "type=test3")
+	public String test3() {
+		UserDomain userDomain1 = new UserDomain();
+		userDomain1.setUserId("adsads111");
+		UserDomain userDomain2 = new UserDomain();
+		userDomain2.setUserId("adsads222");
+
+		List<UserDomain> list = new ArrayList<UserDomain>();
+		list.add(userDomain1);
+		list.add(userDomain2);
+
+//		userService.insertList(list);
+		
+		userService.insert(userDomain1);
+		return null;
+	}
+
 }

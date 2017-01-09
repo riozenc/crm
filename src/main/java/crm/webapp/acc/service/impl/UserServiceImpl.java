@@ -87,5 +87,9 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return userDAO.findUserByCompany(companyDomain);
 	}
+	
+	public int insertList(List<UserDomain> list){
+		return userDAO.insertList(list);
+	}
 
 }

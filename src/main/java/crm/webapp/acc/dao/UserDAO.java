@@ -9,6 +9,8 @@ package crm.webapp.acc.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.ExecutorType;
+
 import com.riozenc.quicktool.annotation.TransactionDAO;
 import com.riozenc.quicktool.mybatis.dao.AbstractTransactionDAOSupport;
 import com.riozenc.quicktool.mybatis.dao.BaseDAO;
@@ -60,5 +62,9 @@ public class UserDAO extends AbstractTransactionDAOSupport implements BaseDAO<Us
 
 	public List<UserDomain> findUserByGroup(GroupDomain groupDomain) {
 		return getPersistanceManager().find(getNamespace() + ".findUserByGroup", groupDomain);
+	}
+	
+	public int insertList(List<UserDomain> list){
+		return getPersistanceManager(ExecutorType.BATCH).insertList(getNamespace()+".insert", list);
 	}
 }

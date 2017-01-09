@@ -18,5 +18,7 @@ public interface UserService extends BaseService<UserDomain> {
 	public UserDomain getUser(UserDomain userDomain);
 	
 	public List<UserDomain> findUserByCompany(CompanyDomain companyDomain);
+	
+	public int insertList(List<UserDomain> list);
 
 }
